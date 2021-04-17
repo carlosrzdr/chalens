@@ -9,10 +9,29 @@
         <div class="col"><hr></div>
     </div>
     <div class="container">
-        <div class="overflow-auto" class="msgs" id="messagesHistory" style="overflow-y: scroll; height:500px;">
-            {% for reg in registry %}
-                <div class="container darker"><b style="color:#000" class="left">reg</div>
-            {% endfor %}
+        <div class="overflow-auto" style="overflow-y: scroll; height:500px;">
+            <table class="table tableFixHead">
+                <thead>
+                  <tr>
+                    <th scope="col">MAC</th>
+                    <th scope="col">Channel</th>
+                    <th scope="col">Signal</th>
+                    <th scope="col">Vendor</th>
+                    <th scope="col">SSID</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for reg in registry %}
+                  <tr>
+                    <td>{{reg[0]}}</td>
+                    <td>{{reg[1]}}</td>
+                    <td>{{reg[2]}}</td>
+                    <td>{{reg[3]}}</td>
+                    <td>{{reg[4]}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
         </div>
     </div>
 {% endblock %}

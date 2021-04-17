@@ -1,262 +1,291 @@
 Airport_Time_Capsule_AMC:
   6c:70:9f:db:78:c0:
-    bytes: 7442
+    bytes: 3146
     channels:
     - 1
+    - 2
     - 3
     - 4
+    - 5
+    - 6
     - 7
     - 8
     - 9
+    - 11
+    - 12
     - 13
     devices:
       00:26:86:00:00:00:
-        bytes: 146
-        channel: 7
-        last_seen: 1618701582.1653795
-        signal: -87
+        bytes: 0
+        channel: 12
+        last_seen: 1618703354.4325197
+        signal: -83
         vendor: Quantenna Communcations, Inc.
       01:00:5e:00:00:01:
-        bytes: 218
-        channel: 1
-        last_seen: 1618701582.1547253
-        signal: -87
-        vendor: ''
-      01:00:5e:00:00:02:
-        bytes: 102
-        channel: 3
-        last_seen: 1618701574.772967
-        signal: -79
+        bytes: 0
+        channel: 12
+        last_seen: 1618703708.8526921
+        signal: -47
         vendor: ''
       01:00:5e:00:00:fb:
-        bytes: 229
-        channel: 4
-        last_seen: 1618701569.1634805
-        signal: -95
+        bytes: 0
+        channel: 12
+        last_seen: 1618703715.391198
+        signal: -83
         vendor: ''
       01:00:5e:00:00:fc:
         bytes: 0
-        channel: 1
-        last_seen: 1618700641.4863737
-        signal: -83
+        channel: 11
+        last_seen: 1618703682.3949654
+        signal: -95
         vendor: ''
       01:00:5e:7f:ff:fa:
         bytes: 0
-        channel: 1
-        last_seen: 1618701543.4514933
-        signal: -83
+        channel: 13
+        last_seen: 1618703663.200589
+        signal: -95
         vendor: ''
       04:0e:3c:5d:c8:14:
-        bytes: 624
-        channel: 4
-        last_seen: 1618701603.028618
-        signal: -79
+        bytes: 592
+        channel: 2
+        last_seen: 1618703729.0015476
+        signal: -80
         vendor: ''
       26:57:60:df:50:53:
-        bytes: 146
-        channel: 7
-        last_seen: 1618701582.1671393
-        signal: -83
+        bytes: 0
+        channel: 9
+        last_seen: 1618703714.6369047
+        signal: -95
         vendor: ''
       '33:33:00:00:00:01':
-        bytes: 146
-        channel: 1
-        last_seen: 1618701582.1564977
+        bytes: 142
+        channel: 12
+        last_seen: 1618703728.2961051
         signal: -83
         vendor: ''
       '33:33:00:00:00:16':
-        bytes: 438
-        channel: 1
-        last_seen: 1618701588.6081877
-        signal: -87
+        bytes: 0
+        channel: 12
+        last_seen: 1618703714.795351
+        signal: -95
         vendor: ''
       33:33:00:00:00:fb:
-        bytes: 142
-        channel: 4
-        last_seen: 1618701582.1601272
-        signal: -85
+        bytes: 0
+        channel: 9
+        last_seen: 1618703714.6306882
+        signal: -95
         vendor: ''
       33:33:5a:e4:2a:49:
-        bytes: 142
-        channel: 7
-        last_seen: 1618701582.1618946
-        signal: -87
+        bytes: 0
+        channel: 9
+        last_seen: 1618703714.6328237
+        signal: -95
         vendor: ''
       33:33:ff:be:77:1d:
-        bytes: 142
-        channel: 7
-        last_seen: 1618701582.1583545
+        bytes: 0
+        channel: 9
+        last_seen: 1618703354.4278984
         signal: -85
         vendor: ''
       33:33:ff:d0:a0:ba:
-        bytes: 142
-        channel: 7
-        last_seen: 1618701582.1636772
-        signal: -87
+        bytes: 0
+        channel: 9
+        last_seen: 1618703714.6348577
+        signal: -95
+        vendor: ''
+      52:5d:b8:a7:ee:68:
+        bytes: 0
+        channel: 4
+        last_seen: 1618703379.9254563
+        signal: -85
         vendor: ''
       6c:70:9f:d0:a0:ba:
-        bytes: 568
-        channel: 7
-        last_seen: 1618701582.1636646
-        signal: -87
+        bytes: 240
+        channel: 9
+        last_seen: 1618703728.2986794
+        signal: -83
         vendor: Apple, Inc.
       84:aa:9c:2c:35:c2:
-        bytes: 382
-        channel: 1
-        last_seen: 1618701593.8927658
-        signal: -87
+        bytes: 0
+        channel: 9
+        last_seen: 1618703714.6254961
+        signal: -95
         vendor: MitraStar Technology Corp.
-      fa:cd:9d:27:52:f2:
-        bytes: 458
-        channel: 1
-        last_seen: 1618701604.8323202
-        signal: -80
+      b8:17:c2:af:97:70:
+        bytes: 0
+        channel: 4
+        last_seen: 1618703657.3435829
+        signal: -85
+        vendor: Apple, Inc.
+      c2:2a:76:16:c2:06:
+        bytes: 0
+        channel: 4
+        last_seen: 1618703703.7661073
+        signal: -83
         vendor: ''
-    signal: -77
+      dc:a9:04:75:f5:87:
+        bytes: 183
+        channel: 11
+        last_seen: 1618703726.1513536
+        signal: -80
+        vendor: Apple, Inc.
+      fa:cd:9d:27:52:f2:
+        bytes: 210
+        channel: 1
+        last_seen: 1618703722.1539078
+        signal: -79
+        vendor: ''
+    signal: -85
     vendor: Apple, Inc.
 
 DIRECT-14-HP ENVY 5000 series:
   06:0e:3c:5d:48:14:
-    bytes: 3962
+    bytes: 955
     channels:
-    - 4
+    - 1
     devices: {}
-    signal: -95
+    signal: -87
     vendor: ''
 
 DIRECT-59-HP ENVY 4520 series:
   98:e7:f4:94:c8:5a:
-    bytes: 24336
+    bytes: 8112
     channels:
-    - 3
+    - 1
     devices: {}
-    signal: -75
+    signal: -71
     vendor: Hewlett Packard
 
 DIRECT-AP[TV][LG]65LA970V-ZA:
   12:08:c1:9a:4a:16:
-    bytes: 5976
+    bytes: 351
     channels:
-    - 1
+    - 11
     devices: {}
-    signal: -64
+    signal: -62
     vendor: ''
 
 HP-Print-1B-Officejet Pro 8600:
   ec:9a:74:9c:92:1b:
-    bytes: 320
+    bytes: 0
     channels:
-    - 1
+    - 11
     devices: {}
     signal: -95
     vendor: Hewlett Packard
 
 MOVISTAR_35C2:
   84:aa:9c:2c:35:c3:
-    bytes: 120
+    bytes: 580
     channels:
-    - 1
     - 2
     - 3
     - 4
+    - 5
     - 6
-    - 7
-    - 8
-    - 12
+    - 9
+    - 10
+    - 11
     - 13
     devices:
       00:26:86:00:00:00:
-        bytes: 146
-        channel: 7
-        last_seen: 1618701582.1653795
-        signal: -87
+        bytes: 0
+        channel: 12
+        last_seen: 1618703354.4325197
+        signal: -83
         vendor: Quantenna Communcations, Inc.
       01:00:5e:00:00:01:
-        bytes: 218
-        channel: 1
-        last_seen: 1618701582.1547253
-        signal: -87
+        bytes: 0
+        channel: 12
+        last_seen: 1618703708.8526921
+        signal: -47
         vendor: ''
       01:00:5e:00:00:fb:
-        bytes: 229
-        channel: 4
-        last_seen: 1618701569.1634805
-        signal: -95
-        vendor: ''
-      04:0e:3c:5d:c8:14:
-        bytes: 624
-        channel: 4
-        last_seen: 1618701603.028618
-        signal: -79
-        vendor: ''
-      26:57:60:df:50:53:
-        bytes: 146
-        channel: 7
-        last_seen: 1618701582.1671393
+        bytes: 0
+        channel: 12
+        last_seen: 1618703715.391198
         signal: -83
         vendor: ''
+      04:0e:3c:5d:c8:14:
+        bytes: 592
+        channel: 2
+        last_seen: 1618703729.0015476
+        signal: -80
+        vendor: ''
+      26:57:60:df:50:53:
+        bytes: 0
+        channel: 9
+        last_seen: 1618703714.6369047
+        signal: -95
+        vendor: ''
       '33:33:00:00:00:01':
-        bytes: 146
-        channel: 1
-        last_seen: 1618701582.1564977
+        bytes: 142
+        channel: 12
+        last_seen: 1618703728.2961051
         signal: -83
         vendor: ''
       '33:33:00:00:00:16':
-        bytes: 438
-        channel: 1
-        last_seen: 1618701588.6081877
-        signal: -87
+        bytes: 0
+        channel: 12
+        last_seen: 1618703714.795351
+        signal: -95
         vendor: ''
       33:33:00:00:00:fb:
-        bytes: 142
-        channel: 4
-        last_seen: 1618701582.1601272
-        signal: -85
+        bytes: 0
+        channel: 9
+        last_seen: 1618703714.6306882
+        signal: -95
         vendor: ''
       33:33:5a:e4:2a:49:
-        bytes: 142
-        channel: 7
-        last_seen: 1618701582.1618946
-        signal: -87
+        bytes: 0
+        channel: 9
+        last_seen: 1618703714.6328237
+        signal: -95
         vendor: ''
       33:33:ff:be:77:1d:
-        bytes: 142
-        channel: 7
-        last_seen: 1618701582.1583545
+        bytes: 0
+        channel: 9
+        last_seen: 1618703354.4278984
         signal: -85
         vendor: ''
       33:33:ff:d0:a0:ba:
-        bytes: 142
-        channel: 7
-        last_seen: 1618701582.1636772
-        signal: -87
+        bytes: 0
+        channel: 9
+        last_seen: 1618703714.6348577
+        signal: -95
+        vendor: ''
+      52:5d:b8:a7:ee:68:
+        bytes: 0
+        channel: 4
+        last_seen: 1618703379.9254563
+        signal: -85
         vendor: ''
       6c:70:9f:d0:a0:ba:
-        bytes: 568
-        channel: 7
-        last_seen: 1618701582.1636646
-        signal: -87
+        bytes: 240
+        channel: 9
+        last_seen: 1618703728.2986794
+        signal: -83
         vendor: Apple, Inc.
       84:aa:9c:2c:35:c2:
-        bytes: 382
-        channel: 1
-        last_seen: 1618701593.8927658
-        signal: -87
+        bytes: 0
+        channel: 9
+        last_seen: 1618703714.6254961
+        signal: -95
         vendor: MitraStar Technology Corp.
       fa:cd:9d:27:52:f2:
-        bytes: 458
+        bytes: 210
         channel: 1
-        last_seen: 1618701604.8323202
-        signal: -80
+        last_seen: 1618703722.1539078
+        signal: -79
         vendor: ''
-    signal: -87
+    signal: -95
     vendor: MitraStar Technology Corp.
 
 MOVISTAR_5052:
   34:57:60:df:50:54:
-    bytes: 2311
+    bytes: 590
     channels:
-    - 3
+    - 13
     devices: {}
     signal: -95
     vendor: MitraStar Technology Corp.
@@ -265,96 +294,227 @@ MOVISTAR_5B23:
   cc:d4:a1:97:5b:24:
     bytes: 0
     channels:
-    - 2
+    - 3
+    - 5
+    - 6
+    - 8
+    - 9
+    - 10
+    - 11
     - 12
+    - 13
     devices:
       00:7c:2d:ce:bc:9b:
         bytes: 0
-        channel: 12
-        last_seen: 1618700647.0820444
+        channel: 9
+        last_seen: 1618703340.493511
         signal: -95
         vendor: Samsung Electronics Co.,Ltd
-      01:00:5e:00:00:01:
-        bytes: 218
-        channel: 1
-        last_seen: 1618701582.1547253
+      01:00:5e:00:00:07:
+        bytes: 0
+        channel: 9
+        last_seen: 1618702863.3580825
         signal: -87
         vendor: ''
       01:00:5e:7f:ff:fa:
         bytes: 0
-        channel: 1
-        last_seen: 1618701543.4514933
+        channel: 13
+        last_seen: 1618703663.200589
+        signal: -95
+        vendor: ''
+      '33:33:00:00:00:01':
+        bytes: 142
+        channel: 12
+        last_seen: 1618703728.2961051
         signal: -83
         vendor: ''
       '33:33:00:00:00:16':
-        bytes: 438
-        channel: 1
-        last_seen: 1618701588.6081877
-        signal: -87
+        bytes: 0
+        channel: 12
+        last_seen: 1618703714.795351
+        signal: -95
+        vendor: ''
+      33:33:00:00:00:fb:
+        bytes: 0
+        channel: 9
+        last_seen: 1618703714.6306882
+        signal: -95
+        vendor: ''
+      '33:33:00:01:00:02':
+        bytes: 0
+        channel: 3
+        last_seen: 1618703643.5229688
+        signal: -91
         vendor: ''
       54:88:0e:a6:8a:ec:
         bytes: 0
         channel: 12
-        last_seen: 1618700956.3348093
-        signal: -87
+        last_seen: 1618703147.1572647
+        signal: -95
         vendor: SAMSUNG ELECTRO-MECHANICS(THAILAND)
+      5c:96:9d:6f:af:a2:
+        bytes: 0
+        channel: 9
+        last_seen: 1618703340.4906871
+        signal: -95
+        vendor: Apple, Inc.
+      7c:2e:bd:49:fa:94:
+        bytes: 0
+        channel: 9
+        last_seen: 1618702869.9199429
+        signal: -91
+        vendor: Google, Inc.
+      c8:69:cd:70:21:1f:
+        bytes: 0
+        channel: 9
+        last_seen: 1618703688.7260485
+        signal: -95
+        vendor: Apple, Inc.
       cc:d4:a1:97:5b:23:
         bytes: 0
-        channel: 12
-        last_seen: 1618700647.057856
+        channel: 10
+        last_seen: 1618703534.027129
         signal: -95
         vendor: MitraStar Technology Corp.
-    signal: -87
+      ec:9a:74:9c:92:1b:
+        bytes: 0
+        channel: 11
+        last_seen: 1618703643.523033
+        signal: -91
+        vendor: Hewlett Packard
+    signal: -95
+    vendor: MitraStar Technology Corp.
+
+MOVISTAR_6259:
+  98:97:d1:ab:62:5a:
+    bytes: 0
+    channels:
+    - 5
+    - 7
+    - 8
+    - 10
+    - 11
+    - 12
+    devices:
+      00:26:86:00:00:00:
+        bytes: 0
+        channel: 12
+        last_seen: 1618703354.4325197
+        signal: -83
+        vendor: Quantenna Communcations, Inc.
+      01:00:5e:00:00:01:
+        bytes: 0
+        channel: 12
+        last_seen: 1618703708.8526921
+        signal: -47
+        vendor: ''
+      01:00:5e:00:00:fb:
+        bytes: 0
+        channel: 12
+        last_seen: 1618703715.391198
+        signal: -83
+        vendor: ''
+      01:00:5e:7f:ff:fa:
+        bytes: 0
+        channel: 13
+        last_seen: 1618703663.200589
+        signal: -95
+        vendor: ''
+      '33:33:00:00:00:01':
+        bytes: 142
+        channel: 12
+        last_seen: 1618703728.2961051
+        signal: -83
+        vendor: ''
+      '33:33:00:00:00:16':
+        bytes: 0
+        channel: 12
+        last_seen: 1618703714.795351
+        signal: -95
+        vendor: ''
+      70:ee:50:10:cc:62:
+        bytes: 0
+        channel: 12
+        last_seen: 1618703179.164276
+        signal: -85
+        vendor: Netatmo
+      98:97:d1:ab:62:59:
+        bytes: 0
+        channel: 12
+        last_seen: 1618703308.1785843
+        signal: -85
+        vendor: MitraStar Technology Corp.
+      bc:30:7e:ce:8c:de:
+        bytes: 0
+        channel: 10
+        last_seen: 1618703579.1292965
+        signal: -95
+        vendor: Wistron Neweb Corporation
+      c4:93:d9:25:0d:58:
+        bytes: 0
+        channel: 12
+        last_seen: 1618702837.5576937
+        signal: -85
+        vendor: Samsung Electronics Co.,Ltd
+    signal: -95
     vendor: MitraStar Technology Corp.
 
 MOVISTAR_68BC:
   f8:bf:53:c3:68:c5:
-    bytes: 582
+    bytes: 291
     channels:
-    - 13
+    - 11
     devices: {}
     signal: -95
     vendor: ''
 
 MOVISTAR_6FC6:
   e8:d1:1b:12:6f:c7:
-    bytes: 5015
+    bytes: 580
     channels:
-    - 9
-    - 10
-    - 3
-    - 7
+    - 1
+    - 2
+    - 5
+    - 11
+    - 12
+    - 13
     devices:
-      01:00:5e:00:00:fb:
-        bytes: 229
-        channel: 4
-        last_seen: 1618701569.1634805
-        signal: -95
-        vendor: ''
-      '33:33:00:00:00:16':
-        bytes: 438
-        channel: 1
-        last_seen: 1618701588.6081877
-        signal: -87
-        vendor: ''
-      3e:e8:8c:80:67:a5:
-        bytes: 229
-        channel: 10
-        last_seen: 1618701569.1634645
-        signal: -95
-        vendor: ''
-      ae:38:26:4a:62:9f:
-        bytes: 146
-        channel: 9
-        last_seen: 1618701588.6082287
-        signal: -87
-        vendor: ''
-      cc:25:ef:42:0d:db:
+      20:c9:d0:17:05:f7:
         bytes: 0
-        channel: 7
-        last_seen: 1618700840.903484
+        channel: 12
+        last_seen: 1618702851.0232346
         signal: -91
         vendor: Apple, Inc.
+      '33:33:00:00:00:01':
+        bytes: 142
+        channel: 12
+        last_seen: 1618703728.2961051
+        signal: -83
+        vendor: ''
+      '33:33:00:00:00:16':
+        bytes: 0
+        channel: 12
+        last_seen: 1618703714.795351
+        signal: -95
+        vendor: ''
+      33:33:ff:be:92:16:
+        bytes: 0
+        channel: 12
+        last_seen: 1618702851.0233078
+        signal: -91
+        vendor: ''
+      50:bc:96:03:1f:3e:
+        bytes: 0
+        channel: 2
+        last_seen: 1618703482.5967574
+        signal: -95
+        vendor: Apple, Inc.
+      e8:d1:1b:12:6f:c6:
+        bytes: 0
+        channel: 13
+        last_seen: 1618703456.8196464
+        signal: -95
+        vendor: ASKEY COMPUTER CORP
     signal: -95
     vendor: ASKEY COMPUTER CORP
 
@@ -362,166 +522,216 @@ MOVISTAR_8C99:
   e4:ab:89:78:8c:9b:
     bytes: 0
     channels:
-    - 12
+    - 11
     devices: {}
     signal: -95
     vendor: MitraStar Technology Corp.
 
 MOVISTAR_A3A0:
   94:91:7f:8d:a3:af:
-    bytes: 26792
+    bytes: 13532
     channels:
     - 1
     - 2
     - 3
     - 4
+    - 5
     - 6
+    - 7
     - 8
     - 9
     - 10
+    - 11
+    - 12
     - 13
     devices:
+      01:00:5e:00:00:01:
+        bytes: 0
+        channel: 12
+        last_seen: 1618703708.8526921
+        signal: -47
+        vendor: ''
       4e:13:4d:50:ab:6d:
-        bytes: 2218
-        channel: 8
-        last_seen: 1618701595.9253764
-        signal: -95
+        bytes: 0
+        channel: 3
+        last_seen: 1618703716.888331
+        signal: -38
         vendor: ''
       94:91:7f:8d:a3:a0:
-        bytes: 784
-        channel: 3
-        last_seen: 1618701588.5557222
-        signal: -43
+        bytes: 0
+        channel: 13
+        last_seen: 1618703708.8527007
+        signal: -47
         vendor: ASKEY COMPUTER CORP
       c8:59:81:00:00:06:
         bytes: 0
-        channel: 2
-        last_seen: 1618700628.2338274
-        signal: -89
+        channel: 3
+        last_seen: 1618703709.1574287
+        signal: -55
         vendor: ''
       ff:fa:98:e7:f4:94:
         bytes: 0
-        channel: 2
-        last_seen: 1618700628.2336943
-        signal: -89
+        channel: 3
+        last_seen: 1618703709.1573973
+        signal: -55
         vendor: ''
-    signal: -39
+    signal: -41
     vendor: ASKEY COMPUTER CORP
+
+MOVISTAR_B292:
+  cc:d4:a1:88:b2:93:
+    bytes: 0
+    channels:
+    - 12
+    devices: {}
+    signal: -95
+    vendor: MitraStar Technology Corp.
 
 MOVISTAR_B2D0:
   e6:ab:89:78:8c:9b:
-    bytes: 286
+    bytes: 0
     channels:
-    - 5
+    - 9
     devices: {}
     signal: -95
     vendor: ''
 
 Mi habitat :).ynm:
   fa:8f:ca:3d:29:34:
-    bytes: 0
+    bytes: 213
     channels:
-    - 2
+    - 13
     devices: {}
     signal: -95
     vendor: ''
 
 Primavera:
   68:ff:7b:ad:3d:ea:
-    bytes: 1098
+    bytes: 0
     channels:
-    - 6
+    - 13
     devices: {}
     signal: -95
     vendor: TP-LINK TECHNOLOGIES CO.,LTD.
   68:ff:7b:ad:41:c2:
-    bytes: 1558
+    bytes: 356
     channels:
-    - 1
     - 2
-    - 4
     - 5
+    - 7
+    - 8
+    - 10
+    - 11
     - 12
     - 13
     devices:
+      01:00:5e:00:00:fc:
+        bytes: 0
+        channel: 11
+        last_seen: 1618703682.3949654
+        signal: -95
+        vendor: ''
       01:00:5e:7f:ff:fa:
         bytes: 0
-        channel: 1
-        last_seen: 1618701543.4514933
-        signal: -83
+        channel: 13
+        last_seen: 1618703663.200589
+        signal: -95
+        vendor: ''
+      33:33:00:00:00:fb:
+        bytes: 0
+        channel: 9
+        last_seen: 1618703714.6306882
+        signal: -95
+        vendor: ''
+      34:9f:7b:85:a8:33:
+        bytes: 0
+        channel: 13
+        last_seen: 1618703682.3949816
+        signal: -95
         vendor: ''
       62:50:55:7d:1a:0c:
         bytes: 0
-        channel: 13
-        last_seen: 1618700853.3317935
+        channel: 8
+        last_seen: 1618703669.5403135
         signal: -95
         vendor: ''
       68:ff:7b:ad:41:c0:
         bytes: 0
-        channel: 12
-        last_seen: 1618701246.327726
+        channel: 8
+        last_seen: 1618703663.2005997
         signal: -95
         vendor: TP-LINK TECHNOLOGIES CO.,LTD.
+      78:0f:77:b3:c5:cb:
+        bytes: 0
+        channel: 2
+        last_seen: 1618703649.9861958
+        signal: -95
+        vendor: HangZhou Gubei Electronics Technology Co.,Ltd
     signal: -95
     vendor: TP-LINK TECHNOLOGIES CO.,LTD.
 
 theboss:
   fc:b4:e6:a3:7e:b2:
-    bytes: 568
+    bytes: 284
     channels:
+    - 1
     - 2
-    - 3
     - 4
     - 5
     - 6
     - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
     devices:
-      01:00:5e:7f:ff:fa:
+      01:00:5e:00:00:01:
         bytes: 0
-        channel: 1
-        last_seen: 1618701543.4514933
-        signal: -83
-        vendor: ''
-      1e:df:30:6b:3f:db:
-        bytes: 0
-        channel: 4
-        last_seen: 1618700867.022052
-        signal: -95
+        channel: 12
+        last_seen: 1618703708.8526921
+        signal: -47
         vendor: ''
       20:0d:b0:4d:43:fe:
         bytes: 0
-        channel: 5
-        last_seen: 1618700950.789634
+        channel: 10
+        last_seen: 1618703541.3934789
         signal: -95
         vendor: Shenzhen Four Seas Global Link Network Technology Co., Ltd.
-      '33:33:00:00:00:16':
-        bytes: 438
-        channel: 1
-        last_seen: 1618701588.6081877
-        signal: -87
+      '33:33:00:00:00:01':
+        bytes: 142
+        channel: 12
+        last_seen: 1618703728.2961051
+        signal: -83
         vendor: ''
+      80:7d:3a:1d:3b:6a:
+        bytes: 0
+        channel: 12
+        last_seen: 1618703592.9109824
+        signal: -95
+        vendor: Espressif Inc.
       b4:e6:2d:51:7a:03:
         bytes: 0
-        channel: 5
-        last_seen: 1618700860.6013775
+        channel: 4
+        last_seen: 1618703605.8133404
         signal: -95
         vendor: Espressif Inc.
       b4:e6:2d:51:82:f9:
         bytes: 0
-        channel: 4
-        last_seen: 1618700873.4657192
+        channel: 2
+        last_seen: 1618703618.7166367
         signal: -95
         vendor: Espressif Inc.
-      c0:48:e6:bf:f2:bf:
+      cc:50:e3:74:06:77:
         bytes: 0
-        channel: 13
-        last_seen: 1618701248.8571754
-        signal: -85
-        vendor: Samsung Electronics Co.,Ltd
+        channel: 12
+        last_seen: 1618703554.207075
+        signal: -95
+        vendor: Espressif Inc.
       fc:b4:e6:a3:7e:b1:
         bytes: 0
-        channel: 6
-        last_seen: 1618700860.6781225
+        channel: 10
+        last_seen: 1618703618.72034
         signal: -95
         vendor: ASKEY COMPUTER CORP
     signal: -95
@@ -531,331 +741,499 @@ unknown_ssid_6e:ff:7b:ad:3d:ea:
   6e:ff:7b:ad:3d:ea:
     bytes: 0
     channels:
-    - 2
+    - 12
     devices: {}
     signal: -95
     vendor: ''
 
 unknown_ssid_6e:ff:7b:ad:41:c2:
   6e:ff:7b:ad:41:c2:
-    bytes: 1376
+    bytes: 0
     channels:
     - 1
-    - 2
+    - 3
     - 4
+    - 6
+    - 7
+    - 10
+    - 11
     - 12
+    - 13
     devices:
-      01:00:5e:7f:ff:fa:
+      01:00:5e:00:00:02:
         bytes: 0
-        channel: 1
-        last_seen: 1618701543.4514933
+        channel: 7
+        last_seen: 1618703598.7204702
+        signal: -79
+        vendor: ''
+      01:00:5e:00:00:fb:
+        bytes: 0
+        channel: 12
+        last_seen: 1618703715.391198
         signal: -83
         vendor: ''
+      01:00:5e:00:00:fc:
+        bytes: 0
+        channel: 11
+        last_seen: 1618703682.3949654
+        signal: -95
+        vendor: ''
+      01:00:5e:7f:ff:fa:
+        bytes: 0
+        channel: 13
+        last_seen: 1618703663.200589
+        signal: -95
+        vendor: ''
       '33:33:00:00:00:16':
-        bytes: 438
-        channel: 1
-        last_seen: 1618701588.6081877
-        signal: -87
+        bytes: 0
+        channel: 12
+        last_seen: 1618703714.795351
+        signal: -95
+        vendor: ''
+      33:33:00:00:00:fb:
+        bytes: 0
+        channel: 9
+        last_seen: 1618703714.6306882
+        signal: -95
+        vendor: ''
+      34:9f:7b:85:a8:33:
+        bytes: 0
+        channel: 13
+        last_seen: 1618703682.3949816
+        signal: -95
         vendor: ''
       62:50:55:7d:1a:0c:
         bytes: 0
-        channel: 13
-        last_seen: 1618700853.3317935
+        channel: 8
+        last_seen: 1618703669.5403135
         signal: -95
         vendor: ''
       68:ff:7b:ad:41:c0:
         bytes: 0
-        channel: 12
-        last_seen: 1618701246.327726
+        channel: 8
+        last_seen: 1618703663.2005997
         signal: -95
         vendor: TP-LINK TECHNOLOGIES CO.,LTD.
     signal: -95
     vendor: ''
 
-unknown_ssid_98:97:d1:ab:62:5a:
-  98:97:d1:ab:62:5a:
+unknown_ssid_86:91:7f:8d:a3:ae:
+  86:91:7f:8d:a3:ae:
+    bssid: 86:91:7f:8d:a3:ae
+    bytes: 184
+    channels:
+    - 1
+    devices:
+      28:77:f1:8d:c4:4d:
+        bytes: 404
+        channel: 11
+        last_seen: 1618703721.345601
+        signal: -65
+        vendor: ''
+    signal: -63
+    ssid: null
+    vendor: ''
+
+unknown_ssid_e2:41:36:c9:d5:c0:
+  e2:41:36:c9:d5:c0:
     bytes: 0
     channels:
-    - 3
+    - 1
     devices:
-      01:00:5e:00:00:fb:
-        bytes: 229
-        channel: 4
-        last_seen: 1618701569.1634805
-        signal: -95
-        vendor: ''
-      70:ee:50:10:cc:62:
+      a0:0b:ba:82:6f:1c:
         bytes: 0
-        channel: 3
-        last_seen: 1618700865.95494
-        signal: -87
-        vendor: Netatmo
-    signal: -87
-    vendor: MitraStar Technology Corp.
+        channel: 1
+        last_seen: 1618703488.8780053
+        signal: -95
+        vendor: SAMSUNG ELECTRO MECHANICS CO., LTD.
+    signal: -95
+    vendor: ''
 
 vodafoneBCE0:
   78:81:02:f6:bc:e1:
-    bytes: 4399
+    bytes: 5626
     channels:
     - 1
     - 2
     - 3
-    - 5
-    - 6
+    - 4
+    - 7
     - 8
     - 10
+    - 11
+    - 12
     - 13
     devices:
-      01:00:5e:00:00:01:
-        bytes: 218
-        channel: 1
-        last_seen: 1618701582.1547253
-        signal: -87
-        vendor: ''
       01:00:5e:00:00:02:
-        bytes: 102
-        channel: 3
-        last_seen: 1618701574.772967
+        bytes: 0
+        channel: 7
+        last_seen: 1618703598.7204702
         signal: -79
         vendor: ''
       01:00:5e:00:00:71:
         bytes: 0
-        channel: 5
-        last_seen: 1618701543.0323339
-        signal: -83
+        channel: 1
+        last_seen: 1618703663.2596269
+        signal: -79
         vendor: ''
       01:00:5e:00:00:fa:
-        bytes: 134
-        channel: 8
-        last_seen: 1618701581.6584191
-        signal: -83
+        bytes: 0
+        channel: 13
+        last_seen: 1618703501.8502293
+        signal: -79
         vendor: ''
       01:00:5e:00:00:fb:
-        bytes: 229
-        channel: 4
-        last_seen: 1618701569.1634805
-        signal: -95
+        bytes: 0
+        channel: 12
+        last_seen: 1618703715.391198
+        signal: -83
         vendor: ''
       01:00:5e:7f:ff:fa:
         bytes: 0
-        channel: 1
-        last_seen: 1618701543.4514933
-        signal: -83
+        channel: 13
+        last_seen: 1618703663.200589
+        signal: -95
         vendor: ''
       04:8c:9a:b0:00:ef:
-        bytes: 683
-        channel: 2
-        last_seen: 1618701601.0440428
-        signal: -83
+        bytes: 0
+        channel: 10
+        last_seen: 1618703708.0613801
+        signal: -79
         vendor: ''
       10:08:c1:9a:ca:16:
-        bytes: 518
-        channel: 2
-        last_seen: 1618701600.8166037
-        signal: -77
+        bytes: 160
+        channel: 12
+        last_seen: 1618703727.6725807
+        signal: -73
         vendor: ''
       54:60:09:0f:b8:d0:
         bytes: 0
-        channel: 5
-        last_seen: 1618700846.8201652
-        signal: -87
+        channel: 12
+        last_seen: 1618703018.4222207
+        signal: -71
         vendor: Google, Inc.
+      6c:ad:f8:14:e0:eb:
+        bytes: 0
+        channel: 12
+        last_seen: 1618703708.254628
+        signal: -80
+        vendor: AzureWave Technology Inc.
       78:81:02:f6:bc:e0:
-        bytes: 257
-        channel: 10
-        last_seen: 1618701600.7453327
-        signal: -256
+        bytes: 0
+        channel: 12
+        last_seen: 1618703521.314508
+        signal: -67
         vendor: Sercomm Corporation.
       7c:d9:5c:0f:8f:3a:
-        bytes: 134
-        channel: 5
-        last_seen: 1618701581.6584916
-        signal: -83
+        bytes: 0
+        channel: 13
+        last_seen: 1618703501.8501449
+        signal: -79
         vendor: Google, Inc.
       b0:c0:90:be:c5:39:
         bytes: 0
-        channel: 1
-        last_seen: 1618700621.226155
-        signal: -85
+        channel: 8
+        last_seen: 1618703663.2454238
+        signal: -256
         vendor: Chicony Electronics Co., Ltd.
-    signal: -71
+    signal: -77
     vendor: Sercomm Corporation.
 
 ~unassociated_devices:
   00:00:00:00:00:00:
     bytes: 0
     devices:
-      02:e0:17:ea:24:cd:
-        bytes: 210
-        channel: 1
-        last_seen: 1618701584.55484
+      00:98:4a:70:07:72:
+        bytes: 0
+        channel: 11
+        last_seen: 1618703038.4388587
         signal: -95
+        vendor: ''
+      02:e0:20:00:6c:71:
+        bytes: 0
+        channel: 12
+        last_seen: 1618703682.0487905
+        signal: -95
+        vendor: ''
+      1a:3f:fb:5d:cf:5e:
+        bytes: 0
+        channel: 2
+        last_seen: 1618703604.887492
+        signal: -79
         vendor: ''
       1c:fe:2b:21:51:76:
-        bytes: 385
-        channel: 2
-        last_seen: 1618701579.0182085
-        signal: -85
+        bytes: 0
+        channel: 4
+        last_seen: 1618703687.057226
+        signal: -83
+        vendor: ''
+      1e:df:30:6b:3f:db:
+        bytes: 0
+        channel: 9
+        last_seen: 1618703194.3049695
+        signal: -95
         vendor: ''
       22:c1:43:b3:80:36:
-        bytes: 330
-        channel: 7
-        last_seen: 1618701568.012027
-        signal: -83
+        bytes: 0
+        channel: 8
+        last_seen: 1618703614.054421
+        signal: -85
         vendor: ''
       30:35:ad:ae:9e:0a:
-        bytes: 385
-        channel: 8
-        last_seen: 1618701599.031382
+        bytes: 0
+        channel: 2
+        last_seen: 1618703707.0423572
         signal: -83
         vendor: Apple, Inc.
-      36:84:5e:bf:2c:83:
-        bytes: 105
-        channel: 1
-        last_seen: 1618701604.802096
-        signal: -95
-        vendor: ''
-      40:23:43:cc:b8:c5:
+      32:ba:9d:d6:77:59:
         bytes: 0
         channel: 3
-        last_seen: 1618700879.8456376
-        signal: -77
-        vendor: CHONGQING FUGUI ELECTRONICS CO.,LTD.
-      52:b3:58:5a:9c:1f:
-        bytes: 0
-        channel: 10
-        last_seen: 1618700774.5401335
+        last_seen: 1618703476.343331
         signal: -95
         vendor: ''
-      5a:82:61:0d:4e:be:
+      3e:4b:e3:ec:7b:1a:
         bytes: 0
-        channel: 8
-        last_seen: 1618700835.0101194
-        signal: -65
+        channel: 3
+        last_seen: 1618703230.7579577
+        signal: -93
+        vendor: ''
+      4a:f4:cb:ad:d2:15:
+        bytes: 0
+        channel: 12
+        last_seen: 1618703474.5575337
+        signal: -95
         vendor: ''
       5c:96:9d:6a:ac:45:
         bytes: 0
-        channel: 6
-        last_seen: 1618700650.8200018
+        channel: 3
+        last_seen: 1618703681.3415494
         signal: -95
         vendor: Apple, Inc.
-      66:f4:24:40:41:c6:
+      66:2e:72:2c:ce:cd:
         bytes: 0
-        channel: 5
-        last_seen: 1618700867.184406
-        signal: -77
-        vendor: ''
-      6a:a5:c2:2e:16:cb:
-        bytes: 0
-        channel: 12
-        last_seen: 1618700789.0236878
+        channel: 9
+        last_seen: 1618703493.1023757
         signal: -95
         vendor: ''
-      6c:ad:f8:14:e0:eb:
-        bytes: 0
-        channel: 3
-        last_seen: 1618701235.8151643
-        signal: -83
-        vendor: AzureWave Technology Inc.
       6e:48:c6:72:db:1d:
-        bytes: 385
-        channel: 3
-        last_seen: 1618701577.0087936
-        signal: -85
+        bytes: 0
+        channel: 13
+        last_seen: 1618703685.0463111
+        signal: -83
+        vendor: ''
+      6e:6f:99:29:72:6a:
+        bytes: 0
+        channel: 12
+        last_seen: 1618703528.6327507
+        signal: -59
         vendor: ''
       6f:ff:7b:ad:41:c2:
-        bytes: 38
-        channel: 8
-        last_seen: 1618701581.7250736
+        bytes: 114
+        channel: 12
+        last_seen: 1618703728.003793
         signal: -88
         vendor: ''
       72:ff:7b:ad:41:ba:
-        bytes: 70
-        channel: 3
-        last_seen: 1618701581.8185155
+        bytes: 114
+        channel: 12
+        last_seen: 1618703728.0037324
         signal: -88
         vendor: ''
-      78:0f:77:b3:c5:cb:
+      74:da:88:b9:34:7c:
         bytes: 0
-        channel: 7
-        last_seen: 1618701247.3059819
-        signal: -83
-        vendor: HangZhou Gubei Electronics Technology Co.,Ltd
-      7e:09:25:52:9f:4c:
-        bytes: 385
-        channel: 4
-        last_seen: 1618701584.0260403
-        signal: -87
-        vendor: ''
-      82:d4:41:a6:80:1a:
-        bytes: 0
-        channel: 7
-        last_seen: 1618700834.1759105
+        channel: 2
+        last_seen: 1618703602.4018624
         signal: -95
         vendor: ''
-      90:81:2a:66:54:71:
+      74:da:88:b9:3a:82:
         bytes: 0
-        channel: 12
-        last_seen: 1618701545.0120778
+        channel: 2
+        last_seen: 1618703647.3758914
+        signal: -85
+        vendor: ''
+      7c:2e:bd:0d:d9:d2:
+        bytes: 0
+        channel: 9
+        last_seen: 1618703533.7570999
+        signal: -95
+        vendor: Google, Inc.
+      7c:2e:bd:ea:c9:60:
+        bytes: 0
+        channel: 3
+        last_seen: 1618703681.505363
+        signal: -95
+        vendor: Google, Inc.
+      7e:09:25:52:9f:4c:
+        bytes: 0
+        channel: 1
+        last_seen: 1618703692.0436733
         signal: -83
         vendor: ''
+      8a:10:6a:14:52:dc:
+        bytes: 0
+        channel: 2
+        last_seen: 1618703557.3997872
+        signal: -83
+        vendor: ''
+      8a:4f:4c:b0:83:2d:
+        bytes: 0
+        channel: 11
+        last_seen: 1618703647.4268599
+        signal: -87
+        vendor: ''
+      90:81:2a:66:54:71:
+        bytes: 220
+        channel: 1
+        last_seen: 1618703727.045755
+        signal: -85
+        vendor: ''
+      90:f1:aa:95:c4:94:
+        bytes: 0
+        channel: 13
+        last_seen: 1618703283.2009478
+        signal: -81
+        vendor: Samsung Electronics Co.,Ltd
+      96:83:43:97:68:df:
+        bytes: 0
+        channel: 5
+        last_seen: 1618703347.2890527
+        signal: -95
+        vendor: ''
       98:e7:f4:94:c8:59:
-        bytes: 530
-        channel: 3
-        last_seen: 1618701605.1959867
-        signal: -40
+        bytes: 240
+        channel: 2
+        last_seen: 1618703724.6034184
+        signal: -39
         vendor: Hewlett Packard
-      bc:3d:85:81:35:6c:
+      9e:30:5b:f0:7c:3d:
         bytes: 0
-        channel: 7
-        last_seen: 1618701233.939779
-        signal: -81
-        vendor: HUAWEI TECHNOLOGIES CO.,LTD
-      c2:2a:76:16:c2:06:
+        channel: 2
+        last_seen: 1618703647.3846977
+        signal: -83
+        vendor: ''
+      a2:ed:02:4c:51:ea:
         bytes: 0
-        channel: 8
-        last_seen: 1618700958.707924
-        signal: -81
+        channel: 4
+        last_seen: 1618703684.1391199
+        signal: -95
+        vendor: ''
+      b0:e4:d5:be:5a:9e:
+        bytes: 0
+        channel: 10
+        last_seen: 1618703578.8819401
+        signal: -95
+        vendor: ''
+      b6:bf:b6:b5:19:38:
+        bytes: 0
+        channel: 10
+        last_seen: 1618703602.4230618
+        signal: -95
+        vendor: ''
+      bc:e6:3f:8c:7d:8d:
+        bytes: 0
+        channel: 3
+        last_seen: 1618703469.3873758
+        signal: -85
+        vendor: Samsung Electronics Co.,Ltd
+      c0:48:e6:bf:f2:bf:
+        bytes: 0
+        channel: 4
+        last_seen: 1618703680.4964378
+        signal: -85
+        vendor: Samsung Electronics Co.,Ltd
+      c6:d7:4f:67:ba:b2:
+        bytes: 0
+        channel: 4
+        last_seen: 1618703626.356642
+        signal: -71
         vendor: ''
       c8:5a:9f:d5:5a:d0:
         bytes: 0
-        channel: 9
-        last_seen: 1618701244.6856537
+        channel: 6
+        last_seen: 1618703577.1722348
         signal: -95
         vendor: ''
       c8:ff:77:7c:b3:78:
         bytes: 0
-        channel: 8
-        last_seen: 1618700834.942897
-        signal: -77
+        channel: 11
+        last_seen: 1618703708.7349262
+        signal: -81
         vendor: Dyson Limited
+      cc:25:ef:42:0d:db:
+        bytes: 0
+        channel: 2
+        last_seen: 1618703618.8242126
+        signal: -55
+        vendor: Apple, Inc.
+      cc:32:e5:85:e8:54:
+        bytes: 0
+        channel: 2
+        last_seen: 1618703647.3992882
+        signal: -85
+        vendor: ''
       d0:37:45:eb:bb:17:
-        bytes: 18680
+        bytes: 21904
         channel: 1
-        last_seen: 1618701601.6097126
-        signal: -75
+        last_seen: 1618703728.458384
+        signal: -71
         vendor: TP-LINK TECHNOLOGIES CO.,LTD.
-      d4:f5:47:06:03:6d:
-        bytes: 599
+      d2:ef:c9:54:2e:f1:
+        bytes: 0
         channel: 12
-        last_seen: 1618701605.3457491
+        last_seen: 1618703528.5628946
+        signal: -55
+        vendor: ''
+      d4:f5:47:06:03:6d:
+        bytes: 0
+        channel: 5
+        last_seen: 1618703663.7709506
         signal: -95
         vendor: ''
+      dc:41:5f:d2:fe:9f:
+        bytes: 0
+        channel: 5
+        last_seen: 1618703533.799969
+        signal: -95
+        vendor: Apple, Inc.
       dc:a6:32:55:94:be:
-        bytes: 1008
-        channel: 2
-        last_seen: 1618701578.2102954
+        bytes: 0
+        channel: 9
+        last_seen: 1618703692.1050444
         signal: -45
         vendor: Raspberry Pi Trading Ltd
-      dc:a9:04:75:f5:87:
-        bytes: 32
-        channel: 8
-        last_seen: 1618701587.1663983
-        signal: -80
-        vendor: Apple, Inc.
+      de:0a:f6:cd:ed:3e:
+        bytes: 0
+        channel: 2
+        last_seen: 1618703270.7255886
+        signal: -73
+        vendor: ''
+      de:51:8d:c6:b3:10:
+        bytes: 0
+        channel: 11
+        last_seen: 1618703701.8257751
+        signal: -95
+        vendor: ''
+      e0:3e:44:04:c8:59:
+        bytes: 0
+        channel: 5
+        last_seen: 1618703594.8418255
+        signal: -62
+        vendor: Broadcom
       e0:3e:44:08:ab:6d:
         bytes: 0
-        channel: 1
-        last_seen: 1618701544.3153174
+        channel: 3
+        last_seen: 1618703713.212855
         signal: -84
         vendor: Broadcom
+      e6:ab:89:8f:3a:f9:
+        bytes: 0
+        channel: 2
+        last_seen: 1618703602.4278684
+        signal: -87
+        vendor: ''
+      fa:2f:f5:06:1f:6c:
+        bytes: 0
+        channel: 2
+        last_seen: 1618703304.7814236
+        signal: -95
+        vendor: ''

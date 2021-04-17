@@ -84,6 +84,4 @@ class Database():
 
         results = self.cursor.fetchall()
 
-        print(type(results))
-
         return results
