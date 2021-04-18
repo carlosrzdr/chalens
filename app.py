@@ -15,7 +15,6 @@ def index():
 def network():
     sc.read()
     regs = db.getDevicesTable()
-    print(regs[0])
     return render_template('network.html', registry=regs)
 
 @app.route('/area')

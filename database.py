@@ -74,8 +74,7 @@ class Database():
 
         results = self.cursor.fetchall()
 
-        for row in results:
-            print(row)
+        return results
 
     def getDevicesTable(self):
         self.cursor.execute(f"""SELECT *
