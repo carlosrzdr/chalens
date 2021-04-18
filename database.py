@@ -2,11 +2,11 @@ import sqlite3
 
 class Database():
 
-    def __init__(self, FILE = 'database.db', LAN_TABLE = 'lan', AREA_TABLE = 'area', KNOWN_TABLE = 'known'):
+    def __init__(self, FILE = 'database.db', DEVICES_TABLE = 'devices', NETWORKS_TABLE = 'networks', KNOWN_TABLE = 'known'):
         self.FILE = FILE
-        self.LAN_TABLE = LAN_TABLE
+        self.DEVICES_TABLE = DEVICES_TABLE
         self.KNOWN_TABLE = KNOWN_TABLE
-        self.AREA_TABLE = AREA_TABLE
+        self.NETWORKS_TABLE = NETWORKS_TABLE
         self.connection = None
 
         try:
@@ -18,7 +18,7 @@ class Database():
         self.createTables()
 
     def createTables(self):
-        self.cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.LAN_TABLE}
+        self.cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.DEVICES_TABLE}
                                 (mac TEXT,
                                 channel INTEGER,
                                 signal INTEGER,
@@ -26,7 +26,7 @@ class Database():
                                 bssid TEXT);
                                 """)
 
-        self.cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.AREA_TABLE}
+        self.cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.NETWORKS_TABLE}
                                 (bssid TEXT,
                                 signal INTEGER,
                                 vendor TEXT,
@@ -53,32 +53,32 @@ class Database():
 
         self.connection.commit()
 
-    def insertLanTable(self, mac, channel, signal, vendor, bssid):
-        self.cursor.execute(f"""INSERT INTO {self.LAN_TABLE} (mac, channel, signal, vendor, bssid)
+    def insertDevicesTable(self, mac, channel, signal, vendor, bssid):
+        self.cursor.execute(f"""INSERT INTO {self.DEVICES_TABLE} (mac, channel, signal, vendor, bssid)
                                 VALUES ('{mac}', {channel}, {signal}, '{vendor}', '{bssid}');
                                 """)
 
         self.connection.commit()
 
-    def insertAreaTable(self, bssid, signal, vendor, ssid):
-        self.cursor.execute(f"""INSERT INTO {self.AREA_TABLE} (bssid, signal, vendor, ssid)
-                                VALUES ('{mac}', {signal}, '{vendor}', '{bssid}');
+    def insertNetworksTable(self, bssid, signal, vendor, ssid):
+        self.cursor.execute(f"""INSERT INTO {self.NETWORKS_TABLE} (bssid, signal, vendor, ssid)
+                                VALUES ('{bssid}', {signal}, '{vendor}', '{ssid}');
                                 """)
 
         self.connection.commit()
 
-    def getAreaTable(self):
+    def getNetworksTable(self):
         self.cursor.execute(f"""SELECT *
-                                FROM  {self.AREA_TABLE}
+                                FROM  {self.NETWORKS_TABLE}
                                 """)
 
         results = self.cursor.fetchall()
 
         return results
 
-    def getLanTable(self):
+    def getDevicesTable(self):
         self.cursor.execute(f"""SELECT *
-                                FROM  {self.LAN_TABLE}
+                                FROM  {self.DEVICES_TABLE}
                                 """)
 
         results = self.cursor.fetchall()

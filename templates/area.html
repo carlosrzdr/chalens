@@ -13,21 +13,19 @@
             <table class="table tableFixHead">
                 <thead>
                 <tr>
-                    <th scope="col">MAC</th>
-                    <th scope="col">Channel</th>
-                    <th scope="col">Signal</th>
-                    <th scope="col">Vendor</th>
                     <th scope="col">SSID</th>
+                    <th scope="col">BSSID</th>
+                    <th scope="col">Vendor</th>
+                    <th scope="col">Signal</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for reg in registry %}
                 <tr>
-                    <td>{{reg[0]}}</td>
-                    <td>{{reg[1]}}</td>
-                    <td>{{reg[2]}}</td>
                     <td>{{reg[3]}}</td>
-                    <td>{{reg[4]}}</td>
+                    <td>{{reg[0]}}</td>
+                    <td>{{reg[2]}}</td>
+                    <td>{{reg[1]}}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
