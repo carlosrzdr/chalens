@@ -15,10 +15,10 @@ class Scan():
     def changeScan(self):
         if self.running:
             os.killpg(os.getpgid(self.proc.pid), signal.SIGTERM)
-            self.running==False
+            self.running=False
         else:
             self.proc = subprocess.Popen(self.cmd, close_fds=True, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT, preexec_fn=os.setsid)
-            self.running==True
+            self.running=True
 
     def read_devices(self):
         if os.path.isfile(self.map_path):
@@ -27,12 +27,12 @@ class Scan():
 
             wifi_map = yaml.load(data, Loader=yaml.FullLoader)
 
+            self.db.emptyTable(self.db.DEVICES_TABLE)
+
             for ssid in wifi_map:
                 ssid_node = wifi_map[ssid]
                 bssid_node = list(ssid_node.keys())[0]
                 devices = ssid_node[bssid_node]['devices']
-
-                self.db.emptyTable(self.db.DEVICES_TABLE)
                 
                 for device in devices:
                     self.db.insertDevicesTable(device, devices[device]['channel'], devices[device]['signal'], devices[device]['vendor'], bssid_node)

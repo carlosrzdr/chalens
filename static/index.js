@@ -1,14 +1,59 @@
 $(document).ready(function() {
 
-    $('button[name="changeBtn"]').on('click', function() {
+    $('#statusForm').click(function(event) {
 
-        let status = $(this).
-
-        req = $.ajax({
+        $.ajax({
             url : '/update_control',
             type : 'POST',
-            data : 
         });
+
+        event.preventDefault();
+
+    });
+
+});
+
+$(document).ready(function() {
+
+    $('#eraseForm').click(function(event) {
+
+        $.ajax({
+            url : '/erase_data',
+            type : 'POST',
+        });
+
+        event.preventDefault();
+
+    });
+
+});
+
+$(document).ready(function() {
+
+    $('#refreshNetwork').click(function(event) {
+
+        $.ajax({
+            url : '/refresh_network',
+            type : 'POST',
+        });
+
+        event.preventDefault();
+
+    });
+
+});
+
+
+$(document).ready(function() {
+
+    $('#refreshArea').click(function(event) {
+
+        $.ajax({
+            url : '/refresh_area',
+            type : 'POST',
+        });
+
+        event.preventDefault();
 
     });
 

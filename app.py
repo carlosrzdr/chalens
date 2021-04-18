@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from database import Database
 from scan import Scan
+import os
 
 app = Flask(__name__)
 db = Database()
@@ -10,26 +11,42 @@ sc = Scan(db)
 @app.route('/home')
 def index():
     if sc.running:
-        return render_template('index.html', text='Up', type='success', btn='Apagar')
+        return render_template('index.html', text='Up', textType='success', btnType='danger', btn='Apagar')
     else:
-        return render_template('index.html', text='Down', type='danger', btn='Encender')
+        return render_template('index.html', text='Down', textType='danger', btnType='success', btn='Encender')
 
-@app.route('/update_control', methods = ['POST'])
+@app.route('/update_control', methods=['POST'])
 def update_control():
-    if request.method == "POST":  # button selected
-        btn = request.form["changeBtn"]
-        return redirect(url_for("app.home"))
+    sc.changeScan()
+    print('Sniffing started!') if sc.running else print('Sniffing stopped!')
+    return redirect(url_for('index'))
 
-    return render_template('index.html', running_button=sc.running)
+@app.route('/erase_data', methods=['POST'])
+def erase_data():
+    if os.path.exists("wifi_map.yaml"):
+        os.remove("wifi_map.yaml")
+    db.emptyTable(db.DEVICES_TABLE)
+    db.emptyTable(db.NETWORKS_TABLE)
+    return redirect(url_for('index'))
+
+@app.route('/refresh_network', methods=['POST'])
+def refresh_network():
+    sc.read_devices()
+    return redirect(url_for('network'))
+
+@app.route('/refresh_area', methods=['POST'])
+def refresh_area():
+    sc.read_networks()
+    return redirect(url_for('area'))
 
 @app.route('/network')
 def network():
-    sc.read_devices()
+    refresh_network()
     regs = db.getDevicesTable()
     return render_template('network.html', registry=regs)
 
 @app.route('/area')
 def area():
-    sc.read_networks()
+    refresh_area()
     regs = db.getNetworksTable()
     return render_template('area.html', registry=regs)
