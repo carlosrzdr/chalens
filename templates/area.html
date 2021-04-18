@@ -3,5 +3,35 @@
 {% block title %}Area{% endblock %}
 
 {% block register_area %}
-    <h1>BUENAS AREA</h1>
+    <div class="row" style="padding-top:10px;" >
+        <div class="col"><hr></div>
+        <div class="col-auto"><p class="h3" align="center">CONNECTIONS</p></div>
+        <div class="col"><hr></div>
+    </div>
+    <div class="container">
+        <div class="overflow-auto" style="overflow-y: scroll; height:500px;">
+            <table class="table tableFixHead">
+                <thead>
+                <tr>
+                    <th scope="col">MAC</th>
+                    <th scope="col">Channel</th>
+                    <th scope="col">Signal</th>
+                    <th scope="col">Vendor</th>
+                    <th scope="col">SSID</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for reg in registry %}
+                <tr>
+                    <td>{{reg[0]}}</td>
+                    <td>{{reg[1]}}</td>
+                    <td>{{reg[2]}}</td>
+                    <td>{{reg[3]}}</td>
+                    <td>{{reg[4]}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

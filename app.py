@@ -13,10 +13,12 @@ def index():
 
 @app.route('/network')
 def network():
-    sc.read()
-    regs = db.getDevicesTable()
+    sc.read_lan()
+    regs = db.getLanTable()
     return render_template('network.html', registry=regs)
 
 @app.route('/area')
 def area():
-    return render_template('area.html')
+    sc.read_area()
+    regs = db.getAreaTable()
+    return render_template('area.html', registry=regs)
