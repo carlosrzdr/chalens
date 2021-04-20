@@ -12,9 +12,12 @@ class Scan():
         self.db = db
         self.cmd = [f"trackerjacker -i {interface} --map"]
 
+        subprocess.Popen(['pkill -f trackerjacker'], close_fds=True, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT, preexec_fn=os.setsid)
+
     def changeScan(self):
         if self.running:
             os.killpg(os.getpgid(self.proc.pid), signal.SIGTERM)
+            subprocess.Popen(['pkill -f trackerjacker'], close_fds=True, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT, preexec_fn=os.setsid)
             self.running=False
         else:
             self.proc = subprocess.Popen(self.cmd, close_fds=True, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT, preexec_fn=os.setsid)

@@ -2,17 +2,21 @@ import sqlite3
 
 class Database():
 
-    def __init__(self, FILE = 'database.db', DEVICES_TABLE = 'devices', NETWORKS_TABLE = 'networks', KNOWN_TABLE = 'known'):
+    def __init__(self, FILE = 'database.db', NETWORKS_TABLE = 'networks', DEVICES_TABLE = 'devices', KNOWN_TABLE = 'known'):
         self.FILE = FILE
-        self.DEVICES_TABLE = DEVICES_TABLE
         self.KNOWN_TABLE = KNOWN_TABLE
         self.NETWORKS_TABLE = NETWORKS_TABLE
+        self.DEVICES_TABLE = DEVICES_TABLE
         self.connection = None
-
+        self.current_bssid = ''
+        
         try:
             self.connection = sqlite3.connect(FILE, check_same_thread=False)
         except Error as ex:
             print(ex)
+
+        #try:
+        #    self.current_bssid=
 
         self.cursor = self.connection.cursor()
         self.createTables()
@@ -27,7 +31,8 @@ class Database():
                                 """)
 
         self.cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.NETWORKS_TABLE}
-                                (bssid TEXT,
+                                (mac TEXT,
+                                channels TEXT,
                                 signal INTEGER,
                                 vendor TEXT,
                                 ssid TEXT);
@@ -76,7 +81,7 @@ class Database():
 
         return results
 
-    def getDevicesTable(self):
+    def getDevicesOnNetworkTable(self):
         self.cursor.execute(f"""SELECT *
                                 FROM  {self.DEVICES_TABLE}
                                 """)

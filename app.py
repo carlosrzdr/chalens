@@ -42,7 +42,7 @@ def refresh_area():
 @app.route('/network')
 def network():
     refresh_network()
-    regs = db.getDevicesTable()
+    regs = db.getDevicesOnNetworkTable()
     return render_template('network.html', registry=regs)
 
 @app.route('/area')

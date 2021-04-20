@@ -13,6 +13,13 @@
       </div>
       <div class="col"><hr></div>
     </div>
+    <div class='container'>
+      <select class="selectpicker" data-live-search="true">
+        {% for net in networks %}
+          <option data-tokens="{{net}}">{{net}}</option>
+        {% endfor %}
+      </select>      
+    </div>
     <div class="container">
         <div class="overflow-auto" style="overflow-y: scroll; height:500px;">
             <table class="table tableFixHead">
