@@ -1,22 +1,30 @@
 import sqlite3
+import subprocess
 
 class Database():
 
-    def __init__(self, FILE = 'database.db', NETWORKS_TABLE = 'networks', DEVICES_TABLE = 'devices', KNOWN_TABLE = 'known'):
+    def __init__(self, FILE = 'database.db', NETWORKS_TABLE = 'networks', DEVICES_TABLE = 'devices', KNOWN_TABLE = 'known', interface='wlan1'):
         self.FILE = FILE
         self.KNOWN_TABLE = KNOWN_TABLE
         self.NETWORKS_TABLE = NETWORKS_TABLE
         self.DEVICES_TABLE = DEVICES_TABLE
         self.connection = None
-        self.current_bssid = ''
+        self.network_ssid = None
+        self.interface = interface
         
         try:
             self.connection = sqlite3.connect(FILE, check_same_thread=False)
         except Error as ex:
             print(ex)
 
-        #try:
-        #    self.current_bssid=
+        try:
+            self.network_ssid = subprocess.Popen(f'sudo iwgetid {self.interface} --raw',
+                                                    shell=True,
+                                                    stdout=subprocess.PIPE,
+                                                    universal_newlines=True).communicate()[0].strip()
+            print(f"Connected to {self.network_ssid}")
+        except:
+            print('Not connected to any network!')
 
         self.cursor = self.connection.cursor()
         self.createTables()
@@ -84,6 +92,9 @@ class Database():
     def getDevicesOnNetworkTable(self):
         self.cursor.execute(f"""SELECT *
                                 FROM  {self.DEVICES_TABLE}
+                                WHERE bssid IN (SELECT bssid
+                                                FROM {self.NETWORKS_TABLE}
+                                                WHERE ssid = '{self.network_ssid}')
                                 """)
 
         results = self.cursor.fetchall()

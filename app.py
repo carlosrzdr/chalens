@@ -50,3 +50,8 @@ def area():
     refresh_area()
     regs = db.getNetworksTable()
     return render_template('area.html', registry=regs)
+
+@app.route('/select_device')
+def select_device(methods=['GET']):
+    print('Dispositivo escogido: ',request.args.getlist('device'))
+    return redirect(url_for('network'))

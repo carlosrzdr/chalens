@@ -43,7 +43,6 @@ $(document).ready(function() {
 
 });
 
-
 $(document).ready(function() {
 
     $('#refreshArea').click(function(event) {

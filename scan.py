@@ -32,13 +32,14 @@ class Scan():
 
             self.db.emptyTable(self.db.DEVICES_TABLE)
 
-            for ssid in wifi_map:
-                ssid_node = wifi_map[ssid]
-                bssid_node = list(ssid_node.keys())[0]
-                devices = ssid_node[bssid_node]['devices']
-                
-                for device in devices:
-                    self.db.insertDevicesTable(device, devices[device]['channel'], devices[device]['signal'], devices[device]['vendor'], bssid_node)
+            if wifi_map:
+                for ssid in wifi_map:
+                    ssid_node = wifi_map[ssid]
+                    bssid_node = list(ssid_node.keys())[0]
+                    devices = ssid_node[bssid_node]['devices']
+                    
+                    for device in devices:
+                        self.db.insertDevicesTable(device, devices[device]['channel'], devices[device]['signal'], devices[device]['vendor'], bssid_node)
 
     def read_networks(self):
         if os.path.isfile(self.map_path):
@@ -49,12 +50,13 @@ class Scan():
 
             self.db.emptyTable(self.db.NETWORKS_TABLE)
 
-            for ssid in wifi_map:
-                ssid_node = wifi_map[ssid]
-                bssid_node = list(ssid_node.keys())[0]
-                if bssid_node == '00:00:00:00:00:00':
-                    self.db.insertNetworksTable(bssid_node, 'NULL', '', ssid)
-                else:
-                    self.db.insertNetworksTable(bssid_node, ssid_node[bssid_node]['signal'], ssid_node[bssid_node]['vendor'], ssid)
+            if wifi_map:
+                for ssid in wifi_map:
+                    ssid_node = wifi_map[ssid]
+                    bssid_node = list(ssid_node.keys())[0]
+                    if bssid_node == '00:00:00:00:00:00':
+                        self.db.insertNetworksTable(bssid_node, 'NULL', '', ssid)
+                    else:
+                        self.db.insertNetworksTable(bssid_node, ssid_node[bssid_node]['signal'], ssid_node[bssid_node]['vendor'], ssid)
 
 

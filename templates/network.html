@@ -3,33 +3,33 @@
 {% block title %}Network{% endblock %}
 
 {% block register_network %}
-    <div class="row" style="padding-top:10px;" >
-      <div class="col"><hr></div>
-      <div class="col-auto"><p class="h3">CONNECTIONS</p></div>
-      <div class="col">
+    <div class="d-flex justify-content-center pt-2">
+      <div><p class="h3">NETWORK</p></div>
+      <div>
           <form action="/refresh_network" id="refreshNetwork" method="POST">
-              <button class="btn btn-primary" type="submit">Refresh</button>
+              <button class="btn btn-primary ml-3" type="submit">Refresh</button>
           </form>
       </div>
-      <div class="col"><hr></div>
+      <div><hr></div>
     </div>
-    <div class='container'>
-      <select class="selectpicker" data-live-search="true">
-        {% for net in networks %}
-          <option data-tokens="{{net}}">{{net}}</option>
-        {% endfor %}
-      </select>      
+    <div class='d-flex justify-content-center p-3'>
+      <div class= "dropdown bootstrap-select fit-width">
+          <select class="selectpicker" data-live-search="true">
+            {% for reg in registry %}
+              <option value="{{reg[0]}}" data-tokens='{{reg[0]}}'>{{reg[0]}}</option>
+            {% endfor %}
+          </select>
+      </div>     
     </div>
-    <div class="container">
+    <div class="d-flex justify-content-center flex-column mx-auto">
         <div class="overflow-auto" style="overflow-y: scroll; height:500px;">
-            <table class="table tableFixHead">
-                <thead>
+            <table class="table">
+                <thead class='thead-dark'>
                   <tr>
-                    <th scope="col">MAC</th>
-                    <th scope="col">Channel</th>
-                    <th scope="col">Signal</th>
-                    <th scope="col">Vendor</th>
-                    <th scope="col">SSID</th>
+                    <th>MAC</th>
+                    <th>Channel</th>
+                    <th>Signal</th>
+                    <th>Vendor</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -39,7 +39,6 @@
                     <td>{{reg[1]}}</td>
                     <td>{{reg[2]}}</td>
                     <td>{{reg[3]}}</td>
-                    <td>{{reg[4]}}</td>
                   </tr>
                   {% endfor %}
                 </tbody>
