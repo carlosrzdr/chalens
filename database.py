@@ -3,7 +3,7 @@ import subprocess
 
 class Database():
 
-    def __init__(self, FILE = 'database.db', NETWORKS_TABLE = 'networks', DEVICES_TABLE = 'devices', KNOWN_TABLE = 'known', interface='wlan1'):
+    def __init__(self, FILE = 'database.db', NETWORKS_TABLE = 'networks', DEVICES_TABLE = 'devices', KNOWN_TABLE = 'known', interface='wlan0'):
         self.FILE = FILE
         self.KNOWN_TABLE = KNOWN_TABLE
         self.NETWORKS_TABLE = NETWORKS_TABLE
@@ -35,7 +35,8 @@ class Database():
                                 channel INTEGER,
                                 signal INTEGER,
                                 vendor TEXT,
-                                bssid TEXT);
+                                bssid TEXT,
+                                randomMac INTEGER);
                                 """)
 
         self.cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.NETWORKS_TABLE}
@@ -66,22 +67,22 @@ class Database():
 
         self.connection.commit()
 
-    def insertDevicesTable(self, mac, channel, signal, vendor, bssid):
-        self.cursor.execute(f"""INSERT INTO {self.DEVICES_TABLE} (mac, channel, signal, vendor, bssid)
-                                VALUES ('{mac}', {channel}, {signal}, '{vendor}', '{bssid}');
+    def insertDevicesTable(self, mac, channel, signal, vendor, bssid, random_mac):
+        self.cursor.execute(f"""INSERT INTO {self.DEVICES_TABLE} (mac, channel, signal, vendor, bssid, randomMac)
+                                VALUES ('{mac}', {channel}, {signal}, '{vendor}', '{bssid}', {random_mac});
                                 """)
 
         self.connection.commit()
 
-    def insertNetworksTable(self, bssid, signal, vendor, ssid):
-        self.cursor.execute(f"""INSERT INTO {self.NETWORKS_TABLE} (bssid, signal, vendor, ssid)
-                                VALUES ('{bssid}', {signal}, '{vendor}', '{ssid}');
+    def insertNetworksTable(self, bssid, signal, vendor, ssid, channels):
+        self.cursor.execute(f"""INSERT INTO {self.NETWORKS_TABLE} (mac, signal, vendor, ssid, channels)
+                                VALUES ('{bssid}', {signal}, '{vendor}', '{ssid}', '{channels}');
                                 """)
 
         self.connection.commit()
 
     def getNetworksTable(self):
-        self.cursor.execute(f"""SELECT *
+        self.cursor.execute(f"""SELECT mac, channels, signal, vendor, ssid
                                 FROM  {self.NETWORKS_TABLE}
                                 """)
 
@@ -90,7 +91,7 @@ class Database():
         return results
 
     def getDevicesOnNetworkTable(self):
-        self.cursor.execute(f"""SELECT *
+        self.cursor.execute(f"""SELECT mac, channel, signal, vendor, randomMac
                                 FROM  {self.DEVICES_TABLE}
                                 WHERE bssid IN (SELECT bssid
                                                 FROM {self.NETWORKS_TABLE}

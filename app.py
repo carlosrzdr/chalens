@@ -11,9 +11,9 @@ sc = Scan(db)
 @app.route('/home')
 def index():
     if sc.running:
-        return render_template('index.html', text='Up', textType='success', btnType='danger', btn='Apagar')
+        return render_template('index.html', text='Escaneando', textType='success', btnType='danger', btn='Apagar')
     else:
-        return render_template('index.html', text='Down', textType='danger', btnType='success', btn='Encender')
+        return render_template('index.html', text='Apagado', textType='danger', btnType='success', btn='Encender')
 
 @app.route('/update_control', methods=['POST'])
 def update_control():
@@ -53,5 +53,5 @@ def area():
 
 @app.route('/select_device')
 def select_device(methods=['GET']):
-    print('Dispositivo escogido: ',request.args.getlist('device'))
+    print('Dispositivo escogido: ', request.args.getlist('device'))
     return redirect(url_for('network'))

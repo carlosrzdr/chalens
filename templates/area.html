@@ -3,38 +3,39 @@
 {% block title %}Area{% endblock %}
 
 {% block register_area %}
-    <div class="row" style="padding-top:10px;" >
-        <div class="col"><hr></div>
-        <div class="col-auto"><p class="h3">CONNECTIONS</p></div>
-        <div class="col">
-            <form action="/refresh_area" id="refreshArea" method="POST">
-                <button class="btn btn-primary" type="submit">Refresh</button>
-            </form>
-        </div>
-        <div class="col"><hr></div>
+<div class="d-flex justify-content-center p-3">
+    <div><p class="h3">AREA</p></div>
+    <div>
+        <form action="/refresh_area" id="refreshArea" method="POST">
+            <button class="btn btn-primary ml-3" type="submit">Refresh</button>
+        </form>
     </div>
-    <div class="container">
+    <div><hr></div>
+  </div>
+    <div class="d-flex justify-content-center flex-column mx-auto px-5">
         <div class="overflow-auto" style="overflow-y: scroll; height:500px;">
-            <table class="table tableFixHead">
-                <thead>
-                <tr>
-                    <th scope="col">SSID</th>
-                    <th scope="col">BSSID</th>
-                    <th scope="col">Vendor</th>
-                    <th scope="col">Signal</th>
-                </tr>
+            <table class="table">
+                <thead class='thead-dark'>
+                  <tr>
+                    <th>SSID</th>
+                    <th>BSSID</th>
+                    <th>Vendor</th>
+                    <th>Signal</th>
+                    <th>Channels</th>
+                  </tr>
                 </thead>
                 <tbody>
-                {% for reg in registry %}
-                <tr>
-                    <td>{{reg[3]}}</td>
+                  {% for reg in registry %}
+                  <tr>
+                    <td>{{reg[4]}}</td>
                     <td>{{reg[0]}}</td>
+                    <td>{{reg[3]}}</td>
                     <td>{{reg[2]}}</td>
                     <td>{{reg[1]}}</td>
-                </tr>
-                {% endfor %}
+                  </tr>
+                  {% endfor %}
                 </tbody>
-            </table>
+              </table>
         </div>
     </div>
 {% endblock %}
