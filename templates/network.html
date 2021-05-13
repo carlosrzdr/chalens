@@ -55,11 +55,11 @@
       var chart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: [{% for item in channels %}"{{ item }}",{% endfor %}],
+          labels: [{% for item in channels %}"Channel {{ item }}",{% endfor %}],
           datasets: [
           {% for item in data %}
           {
-            label: 'Channel',
+            label: 'Devices',
             data: {{ item }},
             backgroundColor: '{{ ncolor }}',
             borderColor: '{{ ncolor }}',

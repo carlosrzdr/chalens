@@ -1,5 +1,6 @@
 import sqlite3
 import subprocess
+import redis
 
 class Database():
 
@@ -11,6 +12,11 @@ class Database():
         self.connection = None
         self.network_ssid = None
         self.interface = interface
+
+        client = redis.Redis(host='localhost', port=6379)
+        client.set('test-key', 'test-value')
+        value = client.get('test-key')
+        print(value)
         
         try:
             self.connection = sqlite3.connect(FILE, check_same_thread=False)

@@ -44,8 +44,6 @@ def network():
     refresh_network()
     regs = db.getDevicesOnNetworkTable()
     channels, data = db.getChannels()
-    print(channels)
-    print(data)
     return render_template('network.html',  registry=regs,
                                             channels = channels,
                                             data=data,
