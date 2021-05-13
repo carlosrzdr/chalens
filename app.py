@@ -2,10 +2,19 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for
 from database import Database
 from scan import Scan
 import os
+import numpy as np
 
 app = Flask(__name__)
 db = Database()
 sc = Scan(db)
+
+n, bins = 10000, 20
+normal = np.random.normal(0, 1, n)
+gumbel = np.random.gumbel(0, 1, n)
+weibull = np.random.weibull(5, n)
+nhistogram = np.histogram(normal, bins=bins)
+ghistogram = np.histogram(gumbel, bins=bins)
+whistogram = np.histogram(weibull, bins=bins)
 
 @app.route('/')
 @app.route('/home')
@@ -43,7 +52,18 @@ def refresh_area():
 def network():
     refresh_network()
     regs = db.getDevicesOnNetworkTable()
-    return render_template('network.html', registry=regs)
+    chan = db.getChannels()
+    return render_template('network.html',  registry=regs,
+                                            channels = chan,
+                                            nvalues=nhistogram[0].tolist(),
+                                            nlabels=nhistogram[1].tolist(),
+                                            ncolor='rgba(50, 115, 220, 0.4)',
+                                            gvalues=ghistogram[0].tolist(),
+                                            glabels=ghistogram[1].tolist(),
+                                            gcolor='rgba(0, 205, 175, 0.4)',
+                                            wvalues=whistogram[0].tolist(),
+                                            wlabels=whistogram[1].tolist(),
+                                            wcolor='rgba(255, 56, 96, 0.4)')
 
 @app.route('/area')
 def area():

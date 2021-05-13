@@ -30,7 +30,6 @@
                     <th>Channel</th>
                     <th>Signal</th>
                     <th>Vendor</th>
-                    <th>Random</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -40,11 +39,81 @@
                     <td>{{reg[1]}}</td>
                     <td>{{reg[2]}}</td>
                     <td>{{reg[3]}}</td>
-                    <td>{{reg[4]}}</td>
                   </tr>
                   {% endfor %}
                 </tbody>
               </table>
         </div>
     </div>
+    <div class="d-flex justify-content-center flex-column mx-auto px-5">
+      <canvas id="chartCanvas"></canvas>
+    </div>
+
+    <script>
+      var ctx = document.getElementById('chartCanvas').getContext('2d');
+  
+      var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [{% for item in nlabels %}"{{ item }}",{% endfor %}],
+          datasets: [{
+            label: 'Ocurrences for Gaussian Distribution',
+            data: {{ nvalues }},
+            backgroundColor: '{{ ncolor }}',
+            borderColor: '{{ ncolor }}',
+            borderWidth: 2,
+            fill: true,
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: '{{ ncolor }}',
+            pointHoverBorderColor: '{{ ncolor }}',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            lineTension: 0.4
+          },
+          {
+            label: 'Ocurrences for Gumbel Distribution',
+            data: {{ gvalues }},
+            backgroundColor: '{{ gcolor }}',
+            borderColor: '{{ gcolor }}',
+            borderWidth: 2,
+            fill: true,
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: '{{ gcolor }}',
+            pointHoverBorderColor: '{{ gcolor }}',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            lineTension: 0.4
+          },
+          {
+            label: 'Ocurrences for Weibull Distribution',
+            data: {{ wvalues }},
+            backgroundColor: '{{ wcolor }}',
+            borderColor: '{{ wcolor }}',
+            borderWidth: 2,
+            fill: true,
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: '{{ wcolor }}',
+            pointHoverBorderColor: '{{ wcolor }}',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10
+          }
+        ]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    </script>
 {% endblock %}

@@ -91,13 +91,35 @@ class Database():
         return results
 
     def getDevicesOnNetworkTable(self):
-        self.cursor.execute(f"""SELECT mac, channel, signal, vendor, randomMac
+        self.cursor.execute(f"""SELECT mac, channel, signal, vendor
                                 FROM  {self.DEVICES_TABLE}
                                 WHERE bssid IN (SELECT bssid
                                                 FROM {self.NETWORKS_TABLE}
                                                 WHERE ssid = '{self.network_ssid}')
+                                    AND randomMac = 0
                                 """)
 
         results = self.cursor.fetchall()
 
         return results
+
+    def getChannels(self):
+        self.cursor.execute(f"""SELECT channel, COUNT(channel)
+                                FROM  {self.DEVICES_TABLE}
+                                WHERE bssid IN (SELECT bssid
+                                                FROM {self.NETWORKS_TABLE}
+                                                WHERE ssid = '{self.network_ssid}')
+                                GROUP BY channel
+                                """)
+
+        results = self.cursor.fetchall()
+
+        channels = []
+
+        for channel in results:
+            chan = channel[0]
+            x_data = [chan - 2, chan, chan + 2]
+            y_data = [0, channel[1], 0]
+            channels.append([chan, x_data, y_data])
+
+        return channels
