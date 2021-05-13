@@ -114,12 +114,22 @@ class Database():
 
         results = self.cursor.fetchall()
 
-        channels = []
+        channels = list(range(1, 15))
+        channels_data = []
 
-        for channel in results:
-            chan = channel[0]
-            x_data = [chan - 2, chan, chan + 2]
-            y_data = [0, channel[1], 0]
-            channels.append([chan, x_data, y_data])
+        for channel in channels:
+            try:
+                data = []
+                chan = results[channel][0]
+                for x in channels:
+                    if x==chan:
+                        data.append(results[channel][1])
+                    else:
+                        data.append(0)
+            except:
+                data=[0]*14
+            
+            channels_data.append(data)
 
-        return channels
+
+        return channels, channels_data

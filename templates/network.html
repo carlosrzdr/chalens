@@ -55,10 +55,12 @@
       var chart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: [{% for item in nlabels %}"{{ item }}",{% endfor %}],
-          datasets: [{
-            label: 'Ocurrences for Gaussian Distribution',
-            data: {{ nvalues }},
+          labels: [{% for item in channels %}"{{ item }}",{% endfor %}],
+          datasets: [
+          {% for item in data %}
+          {
+            label: 'Channel',
+            data: {{ item }},
             backgroundColor: '{{ ncolor }}',
             borderColor: '{{ ncolor }}',
             borderWidth: 2,
@@ -72,37 +74,7 @@
             pointHitRadius: 10,
             lineTension: 0.4
           },
-          {
-            label: 'Ocurrences for Gumbel Distribution',
-            data: {{ gvalues }},
-            backgroundColor: '{{ gcolor }}',
-            borderColor: '{{ gcolor }}',
-            borderWidth: 2,
-            fill: true,
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: '{{ gcolor }}',
-            pointHoverBorderColor: '{{ gcolor }}',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            lineTension: 0.4
-          },
-          {
-            label: 'Ocurrences for Weibull Distribution',
-            data: {{ wvalues }},
-            backgroundColor: '{{ wcolor }}',
-            borderColor: '{{ wcolor }}',
-            borderWidth: 2,
-            fill: true,
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: '{{ wcolor }}',
-            pointHoverBorderColor: '{{ wcolor }}',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10
-          }
+          {% endfor %}
         ]
         },
         options: {
