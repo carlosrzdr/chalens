@@ -1,25 +1,17 @@
-import sqlite3
 import subprocess
 import redis
 
 class Database():
 
-    def __init__(self, FILE = 'database.db', NETWORKS_TABLE = 'networks', DEVICES_TABLE = 'devices', KNOWN_TABLE = 'known', interface='wlan0'):
-        self.FILE = FILE
-        self.KNOWN_TABLE = KNOWN_TABLE
+    def __init__(self, NETWORKS_TABLE = 'networks', DEVICES_TABLE = 'devices', interface='wlan1'):
         self.NETWORKS_TABLE = NETWORKS_TABLE
         self.DEVICES_TABLE = DEVICES_TABLE
-        self.connection = None
         self.network_ssid = None
         self.interface = interface
-
-        client = redis.Redis(host='localhost', port=6379)
-        client.set('test-key', 'test-value')
-        value = client.get('test-key')
-        print(value)
-        
+ 
         try:
-            self.connection = sqlite3.connect(FILE, check_same_thread=False)
+            self.client = redis.Redis(host='localhost', port=6379, db=0, charset="utf-8", decode_responses=True)
+            #self.client.flushdb()
         except Error as ex:
             print(ex)
 
@@ -28,114 +20,36 @@ class Database():
                                                     shell=True,
                                                     stdout=subprocess.PIPE,
                                                     universal_newlines=True).communicate()[0].strip()
-            print(f"Connected to {self.network_ssid}")
+            print(f"DB Log: Connected to {self.network_ssid}")
         except:
-            print('Not connected to any network!')
+            print('DB Log: Not connected to any network!')
 
-        self.cursor = self.connection.cursor()
-        self.createTables()
+    def empty(self):
+        self.client.flushdb()
 
-    def createTables(self):
-        self.cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.DEVICES_TABLE}
-                                (mac TEXT,
-                                channel INTEGER,
-                                signal INTEGER,
-                                vendor TEXT,
-                                bssid TEXT,
-                                randomMac INTEGER);
-                                """)
+    def getAPTable(self):
+        keys = self.getAPTableKeys()
+        values = []
+        
+        for key in keys:
+            values.append(self.client.hgetall(key))
+        
+        return values
 
-        self.cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.NETWORKS_TABLE}
-                                (mac TEXT,
-                                channels TEXT,
-                                signal INTEGER,
-                                vendor TEXT,
-                                ssid TEXT);
-                                """)
-                            
-        self.cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.KNOWN_TABLE}
-                                (mac TEXT,
-                                name TEXT);
-                                """)
+    def getAPTableKeys(self):
+        return self.client.keys("ap:*")
 
-        self.connection.commit()
+    def getDevicesTable(self):
+        keys = self.getDevicesTableKeys()
+        values = []
+        
+        for key in keys:
+            values.append(self.client.hgetall(key))
+        
+        return values
 
-    def emptyTable(self, TABLE):
-        self.cursor.execute(f"""DELETE FROM {TABLE};
-                                """)
-
-        self.connection.commit()
-
-    def insertKnownTable(self, mac, name):
-        self.cursor.execute(f"""INSERT INTO {self.KNOWN_TABLE} (mac, name)
-                                VALUES ('{mac}', '{name}');
-                                """)
-
-        self.connection.commit()
-
-    def insertDevicesTable(self, mac, channel, signal, vendor, bssid, random_mac):
-        self.cursor.execute(f"""INSERT INTO {self.DEVICES_TABLE} (mac, channel, signal, vendor, bssid, randomMac)
-                                VALUES ('{mac}', {channel}, {signal}, '{vendor}', '{bssid}', {random_mac});
-                                """)
-
-        self.connection.commit()
-
-    def insertNetworksTable(self, bssid, signal, vendor, ssid, channels):
-        self.cursor.execute(f"""INSERT INTO {self.NETWORKS_TABLE} (mac, signal, vendor, ssid, channels)
-                                VALUES ('{bssid}', {signal}, '{vendor}', '{ssid}', '{channels}');
-                                """)
-
-        self.connection.commit()
-
-    def getNetworksTable(self):
-        self.cursor.execute(f"""SELECT mac, channels, signal, vendor, ssid
-                                FROM  {self.NETWORKS_TABLE}
-                                """)
-
-        results = self.cursor.fetchall()
-
-        return results
-
-    def getDevicesOnNetworkTable(self):
-        self.cursor.execute(f"""SELECT mac, channel, signal, vendor
-                                FROM  {self.DEVICES_TABLE}
-                                WHERE bssid IN (SELECT bssid
-                                                FROM {self.NETWORKS_TABLE}
-                                                WHERE ssid = '{self.network_ssid}')
-                                    AND randomMac = 0
-                                """)
-
-        results = self.cursor.fetchall()
-
-        return results
+    def getDevicesTableKeys(self):
+        return self.client.keys("device:*")
 
     def getChannels(self):
-        self.cursor.execute(f"""SELECT channel, COUNT(channel)
-                                FROM  {self.DEVICES_TABLE}
-                                WHERE bssid IN (SELECT bssid
-                                                FROM {self.NETWORKS_TABLE}
-                                                WHERE ssid = '{self.network_ssid}')
-                                GROUP BY channel
-                                """)
-
-        results = self.cursor.fetchall()
-
-        channels = list(range(1, 15))
-        channels_data = []
-
-        for channel in channels:
-            try:
-                data = []
-                chan = results[channel][0]
-                for x in channels:
-                    if x==chan:
-                        data.append(results[channel][1])
-                    else:
-                        data.append(0)
-            except:
-                data=[0]*14
-            
-            channels_data.append(data)
-
-
-        return channels, channels_data
+        return [*range(1,15)]

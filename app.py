@@ -23,27 +23,14 @@ def update_control():
 
 @app.route('/erase_data', methods=['POST'])
 def erase_data():
-    if os.path.exists("wifi_map.yaml"):
-        os.remove("wifi_map.yaml")
-    db.emptyTable(db.DEVICES_TABLE)
-    db.emptyTable(db.NETWORKS_TABLE)
+    db.empty()
     return redirect(url_for('index'))
-
-@app.route('/refresh_network', methods=['POST'])
-def refresh_network():
-    sc.read_devices()
-    return redirect(url_for('network'))
-
-@app.route('/refresh_area', methods=['POST'])
-def refresh_area():
-    sc.read_networks()
-    return redirect(url_for('area'))
 
 @app.route('/network')
 def network():
-    refresh_network()
-    regs = db.getDevicesOnNetworkTable()
-    channels, data = db.getChannels()
+    regs = db.getDevicesTable()
+    channels = db.getChannels()
+    data=[]
     return render_template('network.html',  registry=regs,
                                             channels = channels,
                                             data=data,
@@ -51,13 +38,17 @@ def network():
                                             gcolor='rgba(0, 205, 175, 0.4)',
                                             wcolor='rgba(255, 56, 96, 0.4)')
 
+@app.route('/api/network')
+def APInetwork():
+    regs = db.getDevicesTable()
+    return jsonify(regs)
+
+@app.route('/refresh_area', methods=['POST'])
+def refresh_area():
+    return redirect(url_for('area'))
+
 @app.route('/area')
 def area():
     refresh_area()
-    regs = db.getNetworksTable()
+    regs = db.getAPTable()
     return render_template('area.html', registry=regs)
-
-@app.route('/select_device')
-def select_device(methods=['GET']):
-    print('Dispositivo escogido: ', request.args.getlist('device'))
-    return redirect(url_for('network'))
