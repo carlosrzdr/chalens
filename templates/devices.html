@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Devices{% endblock %}
+
+{% block register_devices %}
+    <div class="d-flex justify-content-center pt-3">
+      <div><p class="h3">DEVICES</p></div>
+      <div><hr></div>
+    </div>
+      <div class="panel-body" style="padding-top:10px;" >
+        <div class="col">
+            <form action="/update_control" id="statusForm" method="POST">
+                <button id="changeBtn" class="btn btn-{{btnType}}" type="submit">{{btn}}</button>
+            </form>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center flex-column mx-auto px-5">
+        <div class="overflow-auto" style="overflow-y: scroll; height:500px;">
+            <table class="table">
+                <thead class='thead-dark'>
+                  <tr>
+                    <th>MAC</th>
+                    <th>Channel</th>
+                    <th>Signal</th>
+                    <th>Vendor</th>
+                    <th>Último</th>
+                  </tr>
+                </thead>
+                <tbody id="devicesList">
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center flex-column mx-auto px-5">
+      <canvas id="chartCanvasDevices"></canvas>
+    </div>
+{% endblock %}

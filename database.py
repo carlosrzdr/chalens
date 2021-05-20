@@ -3,9 +3,7 @@ import redis
 
 class Database():
 
-    def __init__(self, NETWORKS_TABLE = 'networks', DEVICES_TABLE = 'devices', interface='wlan1'):
-        self.NETWORKS_TABLE = NETWORKS_TABLE
-        self.DEVICES_TABLE = DEVICES_TABLE
+    def __init__(self, interface='wlan1'):
         self.network_ssid = None
         self.interface = interface
  
@@ -39,7 +37,7 @@ class Database():
     def getAPTableKeys(self):
         return self.client.keys("ap:*")
 
-    def getDevicesTable(self):
+    def getDevicesInfo(self):
         keys = self.getDevicesTableKeys()
         values = []
         
@@ -48,8 +46,14 @@ class Database():
         
         return values
 
+    def getDevicesChannels(self):
+        keys = self.getDevicesTableKeys()
+        values = [0]*14
+        
+        for key in keys:
+            values[int(self.client.hgetall(key)['channel'])-1] += 1
+        
+        return values
+
     def getDevicesTableKeys(self):
         return self.client.keys("device:*")
-
-    def getChannels(self):
-        return [*range(1,15)]
