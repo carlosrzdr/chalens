@@ -1,3 +1,5 @@
+var chartDevices;
+
 function getDevices() {
   $.getJSON('/api/devices_info', function(data) {
       var devicesListData = '';
@@ -11,83 +13,124 @@ function getDevices() {
           devicesListData += '</tr>';     
       });
           $('#devicesList').html(devicesListData);
-          setDevicesChart()
+
+          var search = $("#searchDevices").val().toLowerCase();
+          $("#devicesList tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(search) > -1)
+          });
+
+          $('#devicesCount').html("DEVICES: " + data.length);
+          updateDevicesChart();
   });
 }
 
-function setDevicesChart() {
-    var ctx = document.getElementById('chartCanvasDevices').getContext('2d');
-    var devices = $.getJSON('/api/devices_channels');
-    var chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
-          datasets: [
-                      {
-                          label: 'Devices per channel',
-                          data: devices,
-                          backgroundColor: 'blue',
-                          borderColor: 'blue',
-                          borderWidth: 2,
-                          fill: true,
-                          pointBorderWidth: 1,
-                          pointHoverRadius: 5,
-                          pointHoverBackgroundColor: 'blue',
-                          pointHoverBorderColor: 'blue',
-                          pointHoverBorderWidth: 2,
-                          pointRadius: 1,
-                          pointHitRadius: 10,
-                      }          
-                    ]
+function setUpChart() {
+  var ctx = document.getElementById('chartCanvasDevices').getContext('2d');
+  var devices = $.getJSON('/api/devices_channels');
+  chartDevices = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+        datasets: [
+                    {
+                        label: 'Devices',
+                        data: devices.responseJSON
+                    }          
+                  ]
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false
+          }
         },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: "Number of devices",
+            },
+            beginAtZero: true,
+            max: 10
+          },
+          x: {
+            title: {
+              display: true,
+              text: "Channel",
+            },
           }
         }
-        });
+      }
+      });
 }
 
-function scanControl(id){
+function updateDevicesChart() {
+  $.getJSON('/api/devices_channels', function(data) {
+    chartDevices.data.datasets[0].data = data;
+    chartDevices.options.scales.y.max = Math.ceil((Math.max.apply(null, data)+3)/5) * 5;
+    chartDevices.update();
+  });
+}
+
+function scanStatus(element){
   $.getJSON('/api/scan', function(data) {
-    if(data.running){
-      document.getElementById(id).className = "btn btn-danger";
-      document.getElementById(id).innerHTML = "Apagar";
-      $.ajax({url : '/api/disable_scan', type : 'POST'});
+    if(data.running==true){
+      element.className = "mx-1 btn btn-danger";
+      element.innerHTML = "Apagar";
     } else {
-      document.getElementById(id).className = "btn btn-success";
-      document.getElementById(id).innerHTML = "Encender";
-      $.ajax({url : '/api/enable_scan', type : 'POST'});
+      element.className = "mx-1 btn btn-success";
+      element.innerHTML = "Encender";
     }
   });
 }
 
+function scanControl(element){
+  $.getJSON('/api/scan', function(data) {
+    if(data.running==true){
+      $.ajax({url : '/api/disable_scan', type : 'POST'});
+      element.className = "mx-1 btn btn-success";
+      element.innerHTML = "Encender";
+    } else {
+      $.ajax({url : '/api/enable_scan', type : 'POST'});
+      element.className = "mx-1 btn btn-danger";
+      element.innerHTML = "Apagar";
+    }
+  });
+}
+
+function eraseDB(){
+  $.ajax({
+    url : '/erase_data',
+    type : 'POST',
+  });
+  getDevices();
+  updateDevicesChart();
+}
+
 $(document).ready(function() {
+
+  setInterval(scanStatus(document.getElementById('scanBtn')), 2000)
 
   $.each ($("[onload]"), function (index, item) {
     $(item).prop ("onload").call (item);
     return false;
   });
 
-  if (window.location.pathname == '/') {
-      $('#eraseForm').click(function(event) {
-
-          $.ajax({
-              url : '/erase_data',
-              type : 'POST',
-          });
-  
-          event.preventDefault();
-  
-      });
-    }
-
-    if (window.location.pathname == '/devices') {
+  if (window.location.pathname == '/devices') {
+      getDevices();
+      setUpChart();
+      // Fetch every 2 seconds
+      setInterval(function () {
         getDevices();
-        // Fetch every 5 seconds
-        setInterval(getDevices, 2000);
-    }
+        updateDevicesChart();
+      }, 2000);
+
+      $("#searchDevices").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#devicesList tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+  }
 
 });

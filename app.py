@@ -5,13 +5,13 @@ import os
 
 app = Flask(__name__)
 db = Database()
+db.empty()
 sc = Scan()
 
 @app.route('/')
 @app.route('/home')
 def index():
-    else:
-        return render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/erase_data', methods=['POST'])
 def erase_data():
@@ -24,9 +24,7 @@ def devices():
 
 @app.route('/area')
 def area():
-    refresh_area()
-    regs = db.getAPTable()
-    return render_template('area.html', registry=regs)
+    return render_template('area.html')
 
 @app.route('/api/devices_info')
 def API_DevicesInfo():
@@ -47,10 +45,10 @@ def API_Scan():
 def API_EnableScan():
     sc.enableScan()
     print('Sniffing started!')
-    return redirect(url_for('index'))
+    return jsonify({'status': 'ok'})
 
 @app.route('/api/disable_scan', methods=['POST'])
 def API_DisableScan():
     sc.disableScan()
     print('Sniffing stopped!')
-    return redirect(url_for('index'))
+    return jsonify({'status': 'ok'})

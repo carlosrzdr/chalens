@@ -15,7 +15,8 @@
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <button id="scanBtn" onload="scanControl(this.id);" onclick="scanControl(this.id)"></a>
+          <a id="scanBtn" onload="scanStatus(this);" onclick="scanControl(this);"></a>
+          <a onclick="eraseDB()" class="mx-1 btn btn-light text-left">Reset</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

@@ -31,6 +31,10 @@ class Database():
         
         for key in keys:
             values.append(self.client.hgetall(key))
+
+        # Ejemplo para excluir macs random
+        # if self.client.hgetall(key)['mac'][1] not in ['2', '6', 'A', 'E']:
+        #         values.append(self.client.hgetall(key))
         
         return values
 

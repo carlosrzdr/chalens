@@ -4,19 +4,15 @@
 
 {% block register_devices %}
     <div class="d-flex justify-content-center pt-3">
-      <div><p class="h3">DEVICES</p></div>
+      <div>
+        <p class="text-center h3" id="devicesCount">DEVICES</p>
+        <input type="text" id="searchDevices" class="m-3 ">
+      </div>
       <div><hr></div>
-    </div>
-      <div class="panel-body" style="padding-top:10px;" >
-        <div class="col">
-            <form action="/update_control" id="statusForm" method="POST">
-                <button id="changeBtn" class="btn btn-{{btnType}}" type="submit">{{btn}}</button>
-            </form>
-        </div>
     </div>
     <div class="d-flex justify-content-center flex-column mx-auto px-5">
         <div class="overflow-auto" style="overflow-y: scroll; height:500px;">
-            <table class="table">
+            <table class="table sticky-top">
                 <thead class='thead-dark'>
                   <tr>
                     <th>MAC</th>
@@ -31,7 +27,7 @@
               </table>
         </div>
     </div>
-    <div class="d-flex justify-content-center flex-column mx-auto px-5">
+    <div class="d-flex justify-content-center flex-column mx-auto p-5">
       <canvas id="chartCanvasDevices"></canvas>
     </div>
 {% endblock %}
