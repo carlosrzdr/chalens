@@ -6,7 +6,7 @@ import copy
 import threading
 import collections
 from functools import reduce
-from datetime import date
+from datetime import datetime
 import redis
 
 import pyaml
@@ -40,7 +40,7 @@ class Dot11Map:
         self.window = 10  # seconds
 
         self.redis_live = redis.StrictRedis(host='localhost', port=6379, db=0)
-        self.redis_history = redis.StrictRedis(host='localhost', port=6379, db=0)
+        self.db_history = redis.StrictRedis(host='localhost', port=6379, db=0)
 
         self.lock = threading.RLock()
 
@@ -50,19 +50,7 @@ class Dot11Map:
         # 'linksys' -> {'90:35:ab:1c:25:19', '80:81:a6:f5:29:22'}
         self.ssid_to_access_point = {}
 
-        # '90:35:cb:1c:25:19' -> {'bssid': '90:35:cb:1c:25:19',
-        #       (bssid)           'ssid': 'hacker',
-        #                         'vendor': 'Linksys',
-        #                         'frames': [(timestamp1, num_bytes), (timestamp2, num_bytes)],
-        #                         'signal': -75,
-        #                         'channels': {1, 11},
-        #                         'devices': {'00:03:7f:84:f8:09', 'e8:51:8b:36:5e:bb'}}
         self.access_points = {}
-
-        # '00:03:7f:84:f8:09' -> {'signal': -60,
-        #        (mac)            'vendor': 'Apple',
-        #                         'frames_in': [(timestamp1, num_bytes), (timestamp2, num_bytes2)],
-        #                         'frames_out': [(timestamp1, num_bytes)] }
         self.devices = {}
 
         self.mac_vendor_db = ieee_mac_vendor_db.MacVendorDB()
@@ -173,11 +161,13 @@ class Dot11Map:
         ap_node_redis = copy.deepcopy(ap_node)
         ap_node_redis['channels'] = str(ap_node_redis['channels'])
         ap_node_redis['frames'] = str(ap_node_redis['frames'])
+        ap_node_redis['ssid'] = str(ap_node_redis['ssid'])
 
         try:
             self.redis_live.hmset(f"ap:{bssid}", ap_node_redis)
-        except:
-            print('Ha fallado en access point', flush=True)
+        except Exception as ex:
+            print("Error:", ex, flush=True)
+            print('AP not valid', ap_node_redis, flush=True)
 
     def update_device(self, mac, frame):
         if mac in MACS_TO_IGNORE:
@@ -191,12 +181,12 @@ class Dot11Map:
                         'channel': frame.channel,
                         'frames_in': [],
                         'frames_out': [],
-                        'time': date.today().strftime("%d/%m/%Y"),
+                        'time': datetime.now().strftime("%H:%M:%S %d/%m/%Y"),
                         'bssid': frame.bssid}
             self.devices[mac] = dev_node
         else:
             self.devices[mac]['last_seen'] = time.time()
-            self.devices[mac]['time'] = date.today().strftime("%d/%m/%Y")
+            self.devices[mac]['time'] = datetime.today().strftime("%d/%m/%Y")
             dev_node = self.devices[mac]
 
         dev_node['signal'] = frame.signal_strength
@@ -220,8 +210,9 @@ class Dot11Map:
         
         try:
             self.redis_live.hmset(f"device:{mac}", dev_node_redis)
-        except:
-            print('Ha fallado en device', flush=True)
+        except Exception as ex:
+            print("Error:", ex, flush=True)
+            print('Device not valid', flush=True)
 
     @staticmethod
     def _with_frames_summed(dev_node):

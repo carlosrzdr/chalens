@@ -20,6 +20,7 @@ class Dot11Frame:
         self.bssid = None
         self.ssid = None
         self.signal_strength = 0
+        self.noise = 0
         self.channel = channel
         self.iface = iface
         self.frame_bytes = len(frame)
@@ -59,14 +60,7 @@ class Dot11Frame:
                 #print('Error decoding ssid: {}'.format(frame[scapy.Dot11Elt].info))
 
         if frame.haslayer(scapy.RadioTap):
-            # This will be uncommented once this scapy PR is merged: https://github.com/secdev/scapy/pull/1381
-            #try:
-            #    self.signal_strength = frame[scapy.RadioTap].dBm_AntSignal
-            #except AttributeError:
-            #    try:
-            self.signal_strength = -(256-ord(frame.notdecoded[-4:-3]))
-            #    except Exception:
-            #        self.signal_strength = -257
+            self.signal_strength = frame[scapy.RadioTap].dBm_AntSignal
 
     def frame_type(self):
         """Returns the 802.11 frame type."""
