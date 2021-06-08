@@ -63,7 +63,7 @@ class TrackerJacker:
                  power=None,
                  devices_to_watch=(),
                  aps_to_watch=(),
-                 threshold_window=10,
+                 threshold_window=30,
                  trigger_command=None,
                  trigger_cooldown=30,  # seconds
                  beep_on_trigger=False,

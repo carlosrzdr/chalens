@@ -1,4 +1,5 @@
 var chartDevices;
+var chartBytes;
 
 function getDevices() {
   $.getJSON('/api/devices_info', function(data) {
@@ -20,13 +21,12 @@ function getDevices() {
           });
 
           $('#devicesCount').html("DEVICES: " + data.length);
-          updateDevicesChart();
   });
 }
 
-function setUpChart() {
+function setUpDevicesChart() {
   var ctx = document.getElementById('chartCanvasDevices').getContext('2d');
-  var devices = $.getJSON('/api/devices_channels');
+  var devices_channels = $.getJSON('/api/devices_channels');
   chartDevices = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -34,8 +34,11 @@ function setUpChart() {
         datasets: [
                     {
                         label: 'Devices',
-                        data: devices.responseJSON
-                    }          
+                        data: devices_channels.responseJSON,
+                        backgroundColor: 'rgba(255, 87, 51, 0.6)',
+                        borderColor: 'rgba(255, 87, 51, 1)',
+                        borderWidth: 1
+                    }        
                   ]
       },
       options: {
@@ -64,6 +67,50 @@ function setUpChart() {
       });
 }
 
+function setUpBytesChart() {
+  var ctx = document.getElementById('chartCanvasBytes').getContext('2d');
+  var devices_bytes = $.getJSON('/api/devices_bytes');
+  console.log(devices_bytes)
+  chartBytes = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+        datasets: [
+                    {
+                      label: 'Bytes',
+                      data: devices_bytes.responseJSON,
+                      backgroundColor: 'rgba(61, 144, 203, 0.6)',
+                      borderColor: 'rgba(61, 144, 203, 1)',
+                      borderWidth: 1
+                  }           
+                  ]
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: "Bytes",
+            },
+            beginAtZero: true,
+            max: 100
+          },
+          x: {
+            title: {
+              display: true,
+              text: "Channel",
+            },
+          }
+        }
+      }
+      });
+}
+
 function updateDevicesChart() {
   $.getJSON('/api/devices_channels', function(data) {
     chartDevices.data.datasets[0].data = data;
@@ -72,30 +119,36 @@ function updateDevicesChart() {
   });
 }
 
+function updateBytesChart() {
+  $.getJSON('/api/devices_bytes', function(data) {
+    chartBytes.data.datasets[0].data = data;
+    chartBytes.options.scales.y.max = Math.ceil((Math.max.apply(null, data)+3000)/5000) * 5000;
+    chartBytes.update();
+  });
+}
+
 function scanStatus(element){
   $.getJSON('/api/scan', function(data) {
     if(data.running==true){
       element.className = "mx-1 btn btn-danger";
-      element.innerHTML = "Apagar";
+      element.innerHTML = "Stop";
     } else {
       element.className = "mx-1 btn btn-success";
-      element.innerHTML = "Encender";
+      element.innerHTML = "Start";
     }
   });
 }
 
 function scanControl(element){
-  $.getJSON('/api/scan', function(data) {
-    if(data.running==true){
-      $.ajax({url : '/api/disable_scan', type : 'POST'});
-      element.className = "mx-1 btn btn-success";
-      element.innerHTML = "Encender";
-    } else {
-      $.ajax({url : '/api/enable_scan', type : 'POST'});
-      element.className = "mx-1 btn btn-danger";
-      element.innerHTML = "Apagar";
-    }
-  });
+  if(element.className=="mx-1 btn btn-danger"){
+    $.ajax({url : '/api/disable_scan', type : 'POST'});
+    element.className = "mx-1 btn btn-success";
+    element.innerHTML = "Start";
+  } else {
+    $.ajax({url : '/api/enable_scan', type : 'POST'});
+    element.className = "mx-1 btn btn-danger";
+    element.innerHTML = "Stop";
+  }
 }
 
 function eraseDB(){
@@ -105,6 +158,18 @@ function eraseDB(){
   });
   getDevices();
   updateDevicesChart();
+  updateBytesChart();
+}
+
+function controlStatus(){
+  $.getJSON('/api/channel', function(data) {
+    $('#currentChannel').html("Current channel: " + data.channel);
+    console.log(data.channel);
+  });
+  $.getJSON('/api/optimal_channel', function(data) {
+    $('#bestChannel').html("Optimal channel: " + data.channel);
+    console.log(data.channel);
+  });
 }
 
 $(document).ready(function() {
@@ -116,13 +181,22 @@ $(document).ready(function() {
     return false;
   });
 
+  if (window.location.pathname == '/control') {
+    controlStatus();
+    setInterval(function(){
+      controlStatus()
+    }, 2000);
+  }
+
   if (window.location.pathname == '/devices') {
       getDevices();
-      setUpChart();
+      setUpBytesChart();
+      setUpDevicesChart();
       // Fetch every 2 seconds
       setInterval(function () {
         getDevices();
         updateDevicesChart();
+        updateBytesChart();
       }, 2000);
 
       $("#searchDevices").on("keyup", function() {

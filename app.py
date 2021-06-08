@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 from database import Database
 from scan import Scan
+from selector import Selector
 import os
 
 app = Flask(__name__)
 db = Database()
-db.empty()
 sc = Scan()
+selector = Selector()
+db.empty()
 
 @app.route('/')
 @app.route('/home')
@@ -22,9 +24,9 @@ def erase_data():
 def devices():
     return render_template('devices.html')
 
-@app.route('/area')
-def area():
-    return render_template('area.html')
+@app.route('/control')
+def control():
+    return render_template('control.html')
 
 @app.route('/api/devices_info')
 def API_DevicesInfo():
@@ -34,6 +36,11 @@ def API_DevicesInfo():
 @app.route('/api/devices_channels')
 def API_DevicesChannels():
     regs = db.getDevicesChannels()
+    return jsonify(regs)
+
+@app.route('/api/devices_bytes')
+def API_DevicesBytes():
+    regs = db.getDevicesBytes()
     return jsonify(regs)
 
 @app.route('/api/scan')
@@ -51,4 +58,33 @@ def API_EnableScan():
 def API_DisableScan():
     sc.disableScan()
     print('Sniffing stopped!')
+    return jsonify({'status': 'ok'})
+
+@app.route('/api/channel')
+def API_Channel():
+    regs = {'channel': selector.current_channel}
+    return jsonify(regs)
+
+@app.route('/api/optimal_channel')
+def API_GetOptimalChannel():
+    selector.optimalChannel(db.getDevicesBytes(), db.getDevicesChannels())
+    regs = {'channel': selector.optimal_channel}
+    return jsonify(regs)
+
+@app.route('/api/channel_change', methods=['POST'])
+def API_ChangeChannel():
+    selector.optimal_channel()
+    print('Sniffing stopped!')
+    return jsonify({'status': 'ok'})
+
+@app.route('/api/enable_channel_hopper', methods=['POST'])
+def API_EnableChannelHopper():
+    selector.enableChannelHopper()
+    print('Enable channel hopping!')
+    return jsonify({'status': 'ok'})
+
+@app.route('/api/disable_channel_hopper', methods=['POST'])
+def API_DisableChannelHopper():
+    selector.disableChannelHopper()
+    print('Disable channel hopping!')
     return jsonify({'status': 'ok'})

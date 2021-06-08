@@ -40,7 +40,6 @@ class Dot11Map:
         self.window = 10  # seconds
 
         self.redis_live = redis.StrictRedis(host='localhost', port=6379, db=0)
-        self.db_history = redis.StrictRedis(host='localhost', port=6379, db=0)
 
         self.lock = threading.RLock()
 
@@ -165,6 +164,7 @@ class Dot11Map:
 
         try:
             self.redis_live.hmset(f"ap:{bssid}", ap_node_redis)
+            self.redis_live.expire(f"ap:{bssid}", 90)
         except Exception as ex:
             print("Error:", ex, flush=True)
             print('AP not valid', ap_node_redis, flush=True)
@@ -186,7 +186,7 @@ class Dot11Map:
             self.devices[mac] = dev_node
         else:
             self.devices[mac]['last_seen'] = time.time()
-            self.devices[mac]['time'] = datetime.today().strftime("%d/%m/%Y")
+            self.devices[mac]['time'] = datetime.now().strftime("%H:%M:%S %d/%m/%Y")
             dev_node = self.devices[mac]
 
         dev_node['signal'] = frame.signal_strength
@@ -201,15 +201,15 @@ class Dot11Map:
         if self.frame_count_by_device[mac] % self.trim_every_num_frames == 0:
             dev_node['frames_out'] = trim_frames_to_window(dev_node['frames_out'], self.window)
             dev_node['frames_in'] = trim_frames_to_window(dev_node['frames_in'], self.window)
+        dev_node = self._with_frames_summed(dev_node)
 
         dev_node_redis = copy.deepcopy(dev_node)
-        dev_node_redis['frames_out'] = str(dev_node_redis['frames_out'])
-        dev_node_redis['frames_in'] = str(dev_node_redis['frames_in'])
-
+        dev_node_redis['bytes'] = str(dev_node_redis['bytes'])
         dev_node_redis['bssid'] = str(dev_node_redis['bssid'])
-        
+
         try:
             self.redis_live.hmset(f"device:{mac}", dev_node_redis)
+            self.redis_live.expire(f"device:{mac}", 90)
         except Exception as ex:
             print("Error:", ex, flush=True)
             print('Device not valid', flush=True)
@@ -218,7 +218,13 @@ class Dot11Map:
     def _with_frames_summed(dev_node):
         """Helper function to aid in serialization."""
         dev_node = copy.deepcopy(dev_node)
-        frames_in = sum([num_bytes for _, num_bytes in dev_node.pop('frames_in', ())])
-        frames_out = sum([num_bytes for _, num_bytes in dev_node.pop('frames_out', ())])
+        
+        try:
+            frames_in = sum([num_bytes for _, num_bytes in dev_node.pop('frames_in', ())])
+            frames_out = sum([num_bytes for _, num_bytes in dev_node.pop('frames_out', ())])
+        except:
+            _, frames_in = dev_node['frames_in']
+            _, frames_out = dev_node['frames_out']
+        
         dev_node['bytes'] = frames_in + frames_out
         return dev_node

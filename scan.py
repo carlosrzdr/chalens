@@ -1,8 +1,6 @@
 import subprocess
 import os
 import signal
-import yaml
-from database import Database
 
 class Scan():
     def __init__(self, interface = 'wlan0'):
