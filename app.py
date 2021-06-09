@@ -18,6 +18,7 @@ def index():
 @app.route('/erase_data', methods=['POST'])
 def erase_data():
     db.empty()
+    selector.optimal_channel = None
     return redirect(url_for('index'))
 
 @app.route('/devices')
@@ -62,6 +63,7 @@ def API_DisableScan():
 
 @app.route('/api/channel')
 def API_Channel():
+    selector.checkChannel()
     regs = {'channel': selector.current_channel}
     return jsonify(regs)
 
@@ -71,11 +73,21 @@ def API_GetOptimalChannel():
     regs = {'channel': selector.optimal_channel}
     return jsonify(regs)
 
-@app.route('/api/channel_change', methods=['POST'])
+@app.route('/api/change_channel', methods=['POST'])
 def API_ChangeChannel():
-    selector.optimal_channel()
-    print('Sniffing stopped!')
+    channel = request.form['channel']
+    try:
+        channel = int(channel)
+    except:
+        return jsonify({'status': 'ko'})
+
+    selector.changeChannel(channel)
     return jsonify({'status': 'ok'})
+
+@app.route('/api/hop')
+def API_Hop():
+    regs = {'hop': selector.channelHopper}
+    return jsonify(regs)
 
 @app.route('/api/enable_channel_hopper', methods=['POST'])
 def API_EnableChannelHopper():

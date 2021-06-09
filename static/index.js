@@ -163,12 +163,44 @@ function eraseDB(){
 
 function controlStatus(){
   $.getJSON('/api/channel', function(data) {
-    $('#currentChannel').html("Current channel: " + data.channel);
-    console.log(data.channel);
+    $('#currentChannel').html(data.channel);
   });
   $.getJSON('/api/optimal_channel', function(data) {
-    $('#bestChannel').html("Optimal channel: " + data.channel);
-    console.log(data.channel);
+    $('#bestChannel').html(data.channel);
+  });
+}
+
+function hopStatus(){
+  var element = document.getElementById('channelHopper');
+  $.getJSON('/api/hop', function(data) {
+    if(data.hop==true){
+      element.className = "mx-1 btn btn-danger";
+      element.innerHTML = "Stop";
+    } else {
+      element.className = "mx-1 btn btn-success";
+      element.innerHTML = "Start";
+    }
+  });
+}
+
+function hopControl(){
+  var element = document.getElementById('channelHopper')
+  if(element.className=="mx-1 btn btn-danger"){
+    $.ajax({url : '/api/disable_channel_hopper', type : 'POST'});
+    element.className = "mx-1 btn btn-success";
+    element.innerHTML = "Start";
+  } else {
+    $.ajax({url : '/api/enable_channel_hopper', type : 'POST'});
+    element.className = "mx-1 btn btn-danger";
+    element.innerHTML = "Stop";
+  }
+}
+
+function changeChannel(element){
+  $.ajax({
+    type: "POST",
+    url: "/api/change_channel",
+    data: {"channel" : element.innerHTML}
   });
 }
 
@@ -183,8 +215,10 @@ $(document).ready(function() {
 
   if (window.location.pathname == '/control') {
     controlStatus();
+    hopStatus();
     setInterval(function(){
-      controlStatus()
+      controlStatus();
+      hopStatus();
     }, 2000);
   }
 

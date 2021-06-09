@@ -4,14 +4,28 @@
 
 {% block control %}
 <div class="d-flex justify-content-center p-3">
-  <div><p class="h3">CONTROL</p></div>
+  <div><p class="h3 mt-5">CONTROL</p></div>
   <div><hr></div>
 </div>
 
 <div class="d-flex justify-content-center flex-column mx-auto px-5">
-  <a id="channelHopper" onload="" onclick=""></a>
-  <a id="channelSelector" onload="" onclick=""></a>
-  <div><p id="currentChannel" class="h3">Current channel: </p></div>
-  <div><p id="bestChannel" class="h3">Best channel: </p></div>
+  <table class="table">
+    <tr">
+      <td>Channel hopper</td>
+      <td><a id="channelHopper" onload="hopStatus();" onclick="hopControl();"></a></td>
+    </tr>
+    <tr>
+      <td>Change to optimal channel</td>
+      <td><a id="channelSelector" class="mx-1 btn btn-info" onclick="changeChannel(document.getElementById('bestChannel'));">Change</a></td>
+    </tr>
+    <tr>
+      <td>Current channel</td>
+      <td id="currentChannel"></td>
+    </tr>
+    <tr>
+      <td>Optimal channel</td>
+      <td id="bestChannel"></td>
+    </tr>
+  </table>
 </div>
 {% endblock %}

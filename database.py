@@ -3,7 +3,8 @@ import redis
 
 class Database():
 
-    def __init__(self): 
+    def __init__(self, max_channel=13): 
+        self.max_channel = max_channel
         try:
             self.client = redis.Redis(host='localhost', port=6379, db=0, charset="utf-8", decode_responses=True)
         except Error as ex:
@@ -39,7 +40,7 @@ class Database():
 
     def getDevicesChannels(self):
         keys = self.getDevicesTableKeys()
-        values = [0]*14
+        values = [0]*self.max_channel
         
         for key in keys:
             values[int(self.client.hgetall(key)['channel'])-1] += 1
@@ -48,7 +49,7 @@ class Database():
 
     def getDevicesBytes(self):
         keys = self.getDevicesTableKeys()
-        values = [0]*14
+        values = [0]*self.max_channel
         
         for key in keys:
             device = self.client.hgetall(key)
