@@ -75,6 +75,7 @@ def API_GetOptimalChannel():
 
 @app.route('/api/change_channel', methods=['POST'])
 def API_ChangeChannel():
+    print(request.form)
     channel = request.form['channel']
     try:
         channel = int(channel)

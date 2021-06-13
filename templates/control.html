@@ -19,6 +19,14 @@
       <td><a id="channelSelector" class="mx-1 btn btn-info" onclick="changeChannel(document.getElementById('bestChannel'));">Change</a></td>
     </tr>
     <tr>
+      <td>Change to channel</td>
+      <td>
+        <form action="" id="manualChannel">
+          <input type="number" id="channel" min="1" max="13">
+          <input type="submit" value="Change" class="mx-1 btn btn-info">
+        </form>
+    </tr>
+    <tr>
       <td>Current channel</td>
       <td id="currentChannel"></td>
     </tr>

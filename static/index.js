@@ -197,11 +197,19 @@ function hopControl(){
 }
 
 function changeChannel(element){
-  $.ajax({
-    type: "POST",
-    url: "/api/change_channel",
-    data: {"channel" : element.innerHTML}
-  });
+  if(element.innerHTML == ''){
+    $.ajax({
+      type: "POST",
+      url: "/api/change_channel",
+      data: {"channel" : element.value}
+    });
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "/api/change_channel",
+      data: {"channel" : element.innerHTML}
+    });
+  }
 }
 
 $(document).ready(function() {
@@ -220,6 +228,10 @@ $(document).ready(function() {
       controlStatus();
       hopStatus();
     }, 2000);
+    $(document).on('submit', '#manualChannel', function() {
+      changeChannel(document.getElementById('channel'))
+      return false;
+    });
   }
 
   if (window.location.pathname == '/devices') {
