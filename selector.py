@@ -29,7 +29,7 @@ class Selector():
 
         if devices_bytes != score:
             for i in range(self.max_channel):
-                score[i] = devices[i] + devices_bytes[i]/3000
+                score[i] = devices[i] + devices_bytes[i]/1000
 
             self.optimal_channel = score.index(min(score)) + 1
 

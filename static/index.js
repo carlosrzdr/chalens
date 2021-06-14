@@ -70,7 +70,6 @@ function setUpDevicesChart() {
 function setUpBytesChart() {
   var ctx = document.getElementById('chartCanvasBytes').getContext('2d');
   var devices_bytes = $.getJSON('/api/devices_bytes');
-  console.log(devices_bytes)
   chartBytes = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -144,10 +143,12 @@ function scanControl(element){
     $.ajax({url : '/api/disable_scan', type : 'POST'});
     element.className = "mx-1 btn btn-success";
     element.innerHTML = "Start";
+    sessionStorage.setItem("lastTime",null);
   } else {
     $.ajax({url : '/api/enable_scan', type : 'POST'});
     element.className = "mx-1 btn btn-danger";
     element.innerHTML = "Stop";
+    sessionStorage.setItem("lastTime",new Date().getTime());
   }
 }
 
@@ -175,10 +176,10 @@ function hopStatus(){
   $.getJSON('/api/hop', function(data) {
     if(data.hop==true){
       element.className = "mx-1 btn btn-danger";
-      element.innerHTML = "Stop";
+      element.innerHTML = "Disable";
     } else {
       element.className = "mx-1 btn btn-success";
-      element.innerHTML = "Start";
+      element.innerHTML = "Enable";
     }
   });
 }
@@ -188,11 +189,11 @@ function hopControl(){
   if(element.className=="mx-1 btn btn-danger"){
     $.ajax({url : '/api/disable_channel_hopper', type : 'POST'});
     element.className = "mx-1 btn btn-success";
-    element.innerHTML = "Start";
+    element.innerHTML = "Enable";
   } else {
     $.ajax({url : '/api/enable_channel_hopper', type : 'POST'});
     element.className = "mx-1 btn btn-danger";
-    element.innerHTML = "Stop";
+    element.innerHTML = "Disable";
   }
 }
 
@@ -212,9 +213,20 @@ function changeChannel(element){
   }
 }
 
+function stopScanTime() {
+  if(sessionStorage.getItem("lastTime")){
+    if((new Date().getTime() - sessionStorage.getItem("lastTime")) / 1000 > 30){
+      scanControl(document.getElementById('scanBtn'));
+    }
+  }
+}
+
 $(document).ready(function() {
 
-  setInterval(scanStatus(document.getElementById('scanBtn')), 2000)
+  setInterval( function () {
+    stopScanTime();
+    scanStatus(document.getElementById('scanBtn'));
+  }, 2000);
 
   $.each ($("[onload]"), function (index, item) {
     $(item).prop ("onload").call (item);
