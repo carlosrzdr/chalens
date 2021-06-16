@@ -15,12 +15,6 @@ db.empty()
 def index():
     return render_template('index.html')
 
-@app.route('/erase_data', methods=['POST'])
-def erase_data():
-    db.empty()
-    selector.optimal_channel = None
-    return redirect(url_for('index'))
-
 @app.route('/devices')
 def devices():
     return render_template('devices.html')
@@ -100,4 +94,16 @@ def API_EnableChannelHopper():
 def API_DisableChannelHopper():
     selector.disableChannelHopper()
     print('Disable channel hopping!')
+    return jsonify({'status': 'ok'})
+
+@app.route('/api/erase_data', methods=['POST'])
+def API_EraseData():
+    db.empty()
+    selector.optimal_channel = None
+    return jsonify({'status': 'ok'})
+
+
+@app.route('/api/save_data', methods=['POST'])
+def API_SaveeData():
+    db.save()
     return jsonify({'status': 'ok'})

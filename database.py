@@ -1,6 +1,8 @@
 import subprocess
 import redis
-
+from datetime import datetime
+import subprocess
+import os
 class Database():
 
     def __init__(self, max_channel=13): 
@@ -12,6 +14,24 @@ class Database():
 
     def empty(self):
         self.client.flushdb()
+
+    def save(self):
+        dirName = os.getcwd() + '/../chalens'
+        if not os.path.exists(dirName):
+            os.makedirs(dirName)
+            subprocess.Popen(["chmod 777 {}".format(dirName)], shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+            print("Directory", dirName, "created ")
+        else:    
+            print("Directory", dirName, "already exists")
+        filepath = dirName + "/devices_info_{}.csv".format(datetime.now().strftime("%d-%m-%Y_%H-%M-%S"))
+        data = self.getDevicesInfo()
+
+        with open(filepath, 'w') as f:
+            f.writelines('mac;vendor;signal;last_seen;channel;time;bssid;bytes')
+            for entry in data:
+                f.writelines("{};{};{};{};{};{};{};{}\n".format(entry['mac'], entry['vendor'], entry['signal'], entry['last_seen'], entry['channel'], entry['time'], entry['bssid'], entry['bytes']))
+
+        subprocess.Popen(["chmod 777 {}".format(filepath)], shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
 
     def getAPTable(self):
         keys = self.getAPTableKeys()

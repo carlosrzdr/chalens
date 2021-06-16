@@ -154,7 +154,7 @@ function scanControl(element){
 
 function eraseDB(){
   $.ajax({
-    url : '/erase_data',
+    url : '/api/erase_data',
     type : 'POST',
   });
   getDevices();
@@ -219,6 +219,13 @@ function stopScanTime() {
       scanControl(document.getElementById('scanBtn'));
     }
   }
+}
+
+function saveData() {
+  $.ajax({
+    url : '/api/save_data',
+    type : 'POST',
+  });
 }
 
 $(document).ready(function() {
