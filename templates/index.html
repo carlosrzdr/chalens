@@ -3,18 +3,44 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-
-<div class="row" style="padding-top:10px;" >
-    <div class="col"><hr></div>
-    <div class="col-auto"><p class="h3 mt-5">How does it work?</p></div>
-    <div class="col"><hr></div>
-</div>
-<div class="container">
-    <div class="overflow-auto" style="overflow-y: scroll; height:500px;">
-        <h4>Control</h4>
-        <h5>This section permits.....</h5>
-        <h4>Devices:</h4>
-        <h5>This section permits.....</h5>
+<div class="container pt-5">
+    <div class="row mt-5">
+        <div class="col-12 justify-content-center">
+            <h1 class="text-center">
+                <img src="{{ url_for('static', filename='img/wifi.png') }}" class="img-fluid">
+                Welcome to Chalens!
+                <img src="{{ url_for('static', filename='img/wifi.png') }}" class="img-fluid">
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 p-5">
+            <div class="card text-center h-100">
+            <div class="card-header h2">
+                How does it work?
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Control</h5>
+                <p class="card-text">This section allows you to change between the different channels and set the main configuration:</p>
+                <p class="card-text text-left">
+                <li><b>Channel hopper:</b> if enabled, the channel will be automatically changed</li>
+                <li><b>Change to optimal channel:</b> change to the current optimal channel manually</li>
+                <li><b>Change to channel:</b> change to desired channel among available</li>
+                <li><b>Current channel:</b> channel being used</li>
+                <li><b>Optimal channel:</b> current optimal channel</li>
+                </p>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Devices</h5>
+                <p class="card-text">This section allows you to identify the channels with the most population and provides:</p>
+                <p class="card-text text-left">
+                <li><b>Table:</b> contains data about all devices in the environment</li>
+                <li><b>Devices graph:</b> shows the amount of devices connected to each channel</li>
+                <li><b>Bytes graph:</b> shows the amount of bytes transmitted in each channel recently</li>
+                </p>
+            </div>
+            </div>
+        </div>
     </div>
 </div>
-{% endblock %}
+{% endblock %} </b>

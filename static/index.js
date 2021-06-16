@@ -5,7 +5,7 @@ function getDevices() {
   $.getJSON('/api/devices_info', function(data) {
       var devicesListData = '';
       $.each(data, function(key, value) {
-          devicesListData += '<tr>';
+          devicesListData += "<tr>";
           devicesListData += '<td>'+value.mac+'</td>';
           devicesListData += '<td>'+value.channel+'</td>';
           devicesListData += '<td>'+value.signal+'</td>';
@@ -54,7 +54,7 @@ function setUpDevicesChart() {
               text: "Number of devices",
             },
             beginAtZero: true,
-            max: 10
+            max: 5
           },
           x: {
             title: {
@@ -97,7 +97,7 @@ function setUpBytesChart() {
               text: "Bytes",
             },
             beginAtZero: true,
-            max: 100
+            max: 5000
           },
           x: {
             title: {
@@ -175,10 +175,10 @@ function hopStatus(){
   var element = document.getElementById('channelHopper');
   $.getJSON('/api/hop', function(data) {
     if(data.hop==true){
-      element.className = "mx-1 btn btn-danger";
+      element.className = "mx-1 btn btn-danger btn-lg";
       element.innerHTML = "Disable";
     } else {
-      element.className = "mx-1 btn btn-success";
+      element.className = "mx-1 btn btn-success btn-lg";
       element.innerHTML = "Enable";
     }
   });
@@ -186,13 +186,13 @@ function hopStatus(){
 
 function hopControl(){
   var element = document.getElementById('channelHopper')
-  if(element.className=="mx-1 btn btn-danger"){
+  if(element.className=="mx-1 btn btn-danger btn-lg"){
     $.ajax({url : '/api/disable_channel_hopper', type : 'POST'});
-    element.className = "mx-1 btn btn-success";
+    element.className = "mx-1 btn btn-success btn-lg";
     element.innerHTML = "Enable";
   } else {
     $.ajax({url : '/api/enable_channel_hopper', type : 'POST'});
-    element.className = "mx-1 btn btn-danger";
+    element.className = "mx-1 btn btn-danger btn-lg";
     element.innerHTML = "Disable";
   }
 }

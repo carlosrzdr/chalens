@@ -8,32 +8,51 @@
   <div><hr></div>
 </div>
 
-<div class="d-flex justify-content-center flex-column mx-auto px-5">
-  <table class="table">
-    <tr">
-      <td>Channel hopper</td>
-      <td><a id="channelHopper" onload="hopStatus();" onclick="hopControl();"></a></td>
-    </tr>
-    <tr>
-      <td>Change to optimal channel</td>
-      <td><a id="channelSelector" class="mx-1 btn btn-info" onclick="changeChannel(document.getElementById('bestChannel'));">Change</a></td>
-    </tr>
-    <tr>
-      <td>Change to channel</td>
-      <td>
+<div class="row d-flex align-items-stretch">
+  <div class="col-12 col-md-4 p-5">
+    <div class="card text-center h-100">
+      <div class="card-body">
+        <h5 class="card-title">Channel hopper</h5>
+        <a id="channelHopper" onload="hopStatus();" onclick="hopControl();"></a>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-4 p-5">
+    <div class="card text-center h-100">
+      <div class="card-body">
+        <h5 class="card-title">Change to optimal channel</h5>
+        <a id="channelSelector" class="mx-1 btn btn-info btn-lg" onclick="changeChannel(document.getElementById('bestChannel'));">Change</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-4 p-5">
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">Change to channel</h5>
         <form action="" id="manualChannel">
-          <input type="number" id="channel" min="1" max="13">
-          <input type="submit" value="Change" class="mx-1 btn btn-info">
+          <input class="form-control form-control-lg" type="number" id="channel" min="1" max="13">
+          <input type="submit" value="Change" class="mx-1 btn btn-info btn-lg mt-3">
         </form>
-    </tr>
-    <tr>
-      <td>Current channel</td>
-      <td id="currentChannel"></td>
-    </tr>
-    <tr>
-      <td>Optimal channel</td>
-      <td id="bestChannel"></td>
-    </tr>
-  </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 p-5">
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">Current channel</h5>
+        <p class="card-text" id="currentChannel"></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 p-5">
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">Optimal channel</h5>
+        <p class="card-text" id="bestChannel"></p>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

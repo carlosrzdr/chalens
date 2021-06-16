@@ -13,15 +13,15 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="overflow-auto table-responsive" style="overflow-y: scroll; height:500px;">
+          <div class="overflow-auto table-responsive" style="overflow-y: scroll; height:350px;">
             <table class="table">
                 <thead class='thead-dark' style="padding: 1rem;">
                   <tr>
-                    <th>MAC</th>
-                    <th>Channel</th>
-                    <th>Signal</th>
-                    <th>Vendor</th>
-                    <th>Last seen</th>
+                    <th style="width: 17%">MAC</th>
+                    <th style="width: 8%">Channel</th>
+                    <th style="width: 10%">Signal</th>
+                    <th style="width: 45%">Vendor</th>
+                    <th style="width: 20%">Last seen</th>
                   </tr>
                 </thead>
                 <tbody id="devicesList">
@@ -31,13 +31,21 @@
         </div>
       </div>
     </div>
-    <div class="container pt-5">
-      <div class="row">
-        <div class="col-6">
-          <canvas id="chartCanvasDevices"></canvas>
+    <div class="row pt-5">
+      <div class="col-12 col-lg-6 p-5">
+        <div class="card text-center h-100">
+          <div class="card-body">
+            <h5 class="card-title">Devices per channel</h5>
+            <canvas id="chartCanvasDevices"></canvas>
+          </div>
         </div>
-        <div class="col-6">
-          <canvas id="chartCanvasBytes"></canvas>
+      </div>
+      <div class="col-12 col-lg-6 p-5">
+        <div class="card text-center h-100">
+          <div class="card-body">
+            <h5 class="card-title">Bytes per channel</h5>
+            <canvas id="chartCanvasBytes"></canvas>
+          </div>
         </div>
       </div>
     </div>
