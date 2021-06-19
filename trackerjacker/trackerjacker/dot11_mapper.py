@@ -39,7 +39,7 @@ class Dot11Map:
         self.remove_unseen_devices = remove_unseen_devices
         self.window = 10  # seconds
 
-        self.redis_live = redis.StrictRedis(host='localhost', port=6379, db=0)
+        self.redis_live = redis.Redis(host='localhost', port=6379, db=0)
 
         self.lock = threading.RLock()
 

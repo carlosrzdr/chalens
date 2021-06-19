@@ -16,7 +16,7 @@ class Database():
         self.client.flushdb()
 
     def save(self):
-        dirName = os.getcwd() + '/../chalens'
+        dirName = os.getcwd() + '/../data'
         if not os.path.exists(dirName):
             os.makedirs(dirName)
             subprocess.Popen(["chmod 777 {}".format(dirName)], shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
@@ -39,10 +39,6 @@ class Database():
         
         for key in keys:
             values.append(self.client.hgetall(key))
-
-        # Ejemplo para excluir macs random
-        # if self.client.hgetall(key)['mac'][1] not in ['2', '6', 'A', 'E']:
-        #         values.append(self.client.hgetall(key))
         
         return values
 
@@ -54,7 +50,10 @@ class Database():
         values = []
         
         for key in keys:
-            values.append(self.client.hgetall(key))
+            info = self.client.hgetall(key)
+            if info['mac'][1] in ['2', '6', 'A', 'E']:
+                info['vendor'] = 'Random MAC'
+            values.append(info)
         
         return values
 
