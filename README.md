@@ -1,6 +1,6 @@
 # Welcome to Chalens!
 
-This is a wireless ecosystem analysis app to help find the most suitable channel for each moment. It was part of a final year degree thesis but I am still working on it whenever I have some free time. Any fork or use of the app is welcome, feel free to do with it as you please.
+This is a wireless ecosystem analysis app to help find the most suitable channel for each moment. It was part of a final year degree thesis but I am still working on it whenever I have some free time. Any fork or use of the app is welcome, feel free to do with it as you please. But take into account, it uses a modification I made to Trackerjacker to run so maybe some kind of reference may be needed. 
 
 
 ## Current state
